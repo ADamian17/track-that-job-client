@@ -1,0 +1,14 @@
+@import "imports/main-imports";
+
+.otherProfessionListBox {
+  background-color: $grey--faint;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid $grey--pale;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 6%);
+  list-style: none;
+  padding: 4px;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}

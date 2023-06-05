@@ -1,0 +1,39 @@
+@use 'abstracts' as *;
+
+.formWrapper {
+  display: grid;
+  grid-template-rows: repeat(2, 2rem) min-content;
+
+  .formIcon {
+    margin: 0 2.4rem;
+    border-radius: 100%;
+    grid-row: 1 / 4;
+    grid-column: 1;
+    height: 4rem;
+    width: 4rem;
+    background-image: radial-gradient(
+      128.88% 128.88% at 103.9% -10.39%,
+      $color-red 0%,
+      $color-purple 53.09%,
+      $color-blue-dark 100%
+    );
+    z-index: 1;
+  }
+
+  .formContainer {
+    padding: 4.4rem 2.4rem 2.4rem;
+    background-color: $color-white;
+    border-radius: 1rem;
+    min-height: 70.8rem;
+    grid-row: 2 / -1;
+    grid-column: 1;
+
+    .headline {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.25px;
+      line-height: 2.6rem;
+      margin-bottom: 2.4rem;
+    }
+  }
+}

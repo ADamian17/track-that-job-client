@@ -1,0 +1,8 @@
+@use 'abstracts' as *;
+
+.jobsContainers {
+  display: grid;
+  grid-auto-rows: min-content;
+  min-height: 73.4rem;
+  row-gap: 1.6rem;
+}

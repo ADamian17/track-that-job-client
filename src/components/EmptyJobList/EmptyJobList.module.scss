@@ -1,0 +1,22 @@
+@use 'abstracts' as *;
+
+.emptyJobList {
+  background-color: $color-white;
+  border-radius: 1rem;
+  align-content: center;
+  display: grid;
+  height: 73.4rem;
+  justify-items: center;
+  row-gap: 1.4rem;
+  text-align: center;
+
+  .icon {
+    height: 10.8rem;
+    margin-bottom: 2.5rem;
+    width: 10.2rem;
+  }
+
+  .copy {
+    margin-bottom: 1rem;
+  }
+}

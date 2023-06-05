@@ -1,0 +1,16 @@
+@use '../../../../sass/abstracts' as *;
+@use '../shareStyle' as *;
+
+.input {
+  @extend %basic-input;
+  border: 1px solid transparent;
+
+  &.inputError {
+    border: 1px solid $color-red;
+  }
+}
+
+.inputWrapper {
+  display: grid;
+  row-gap: 1rem;
+}

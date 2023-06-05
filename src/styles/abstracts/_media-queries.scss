@@ -1,0 +1,21 @@
+@use 'sass:map';
+
+$bp-small: 37em; // 600px / 16
+$bp-smallest: 31.25em; // 500px / 16
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bg-xl: 1208px;
+
+$queries-options: (
+  'md': $bp-md,
+  'lg': $bp-lg,
+  'xl': $bg-xl,
+);
+
+@mixin media-query($bp-target) {
+  $bp: map.get($queries-options, $bp-target);
+
+  @media screen and (min-width: $bp) {
+    @content;
+  }
+}

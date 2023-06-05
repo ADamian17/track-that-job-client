@@ -1,0 +1,81 @@
+@use './colors' as *;
+@use './mixins' as *;
+@use './media-queries' as *;
+
+%dashboard-aside-item {
+  background-color: $color-white;
+  border-radius: 1rem;
+  min-height: 16.6rem;
+  padding: 2.4rem;
+}
+
+%button {
+  border-radius: 0.8rem;
+  border: none;
+  color: $color-white;
+  font-size: 1.4rem;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 19px;
+  overflow: hidden;
+  padding: 1rem 1.6rem;
+  position: relative;
+  text-transform: capitalize;
+  transition: all 0.3s linear;
+
+  &.is-primary {
+    @include setBtnStyle($color-purple);
+    @include setAfterBg($color-purple);
+    @include setSpinnerColor($color-purple);
+  }
+
+  &.is-secondary {
+    @include setBtnStyle($color-blue-dark);
+    @include setAfterBg($color-blue-dark);
+  }
+
+  &.is-info {
+    @include setBtnStyle($color-black-blue);
+    @include setAfterBg($color-black-blue);
+  }
+
+  &.is-danger {
+    @include setBtnStyle($color-red);
+    @include setAfterBg($color-red);
+  }
+
+  &.is-link {
+    @include setBtnStyle(transparent);
+    color: $color-black-grey;
+
+    &:hover {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0.3rem $color-grey;
+  }
+}
+
+%basic-input {
+  appearance: none;
+  background-color: $default-white-bg;
+  border-radius: 0.8rem;
+  border: none;
+  font-family: inherit;
+  font-size: 1.6rem;
+  min-height: 4.8rem;
+  outline: 1px solid transparent;
+  padding: 1rem;
+  width: 100%;
+
+  &:focus {
+    outline: 1px solid $color-blue-dark;
+  }
+}

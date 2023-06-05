@@ -1,0 +1,21 @@
+@use 'abstracts' as *;
+
+.listItem {
+  padding: 1.2rem 2.4rem;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid rgba(58, 67, 116, 0.15);
+  }
+
+  &:focus {
+    background-color: darken($color-white, 5);
+    outline: none;
+  }
+
+  .label {
+    pointer-events: none;
+  }
+}

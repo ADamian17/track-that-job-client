@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+.mainLayout {
+  @include grid-layout;
+
+  .dashboard {
+    @include grid-layout;
+
+    grid-column: 1 / -1;
+    grid-template-rows: min-content 1fr;
+    // min-height: 69.6rem;
+    width: 100%;
+  }
+
+  @include media-query('md') {
+    padding-top: 5.6rem;
+
+    .dashboard {
+      display: grid;
+      gap: 4rem 3rem;
+    }
+  }
+
+  @include media-query('xl') {
+    .dashboard {
+      grid-template-rows: none;
+      justify-self: center;
+      max-width: 111rem;
+    }
+  }
+}

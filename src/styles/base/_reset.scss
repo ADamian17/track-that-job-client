@@ -1,0 +1,27 @@
+@use '../abstracts' as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  min-height: 100vh;
+  background-color: $default-white-bg;
+  font-family: $default-font-family;
+  color: $color-black-blue;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+}
+
+ul {
+  list-style: none;
+}

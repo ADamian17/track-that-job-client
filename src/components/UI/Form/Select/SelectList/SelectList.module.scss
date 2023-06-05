@@ -1,0 +1,20 @@
+@use 'abstracts' as *;
+
+.selectList {
+  background: $color-white;
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+  left: 0;
+  list-style: none;
+  opacity: 0;
+  position: absolute;
+  top: 6.4rem;
+  transition: opacity 0.2s ease-out;
+  width: 100%;
+  z-index: -1;
+
+  &.isOpen {
+    opacity: 1;
+    z-index: 2;
+  }
+}

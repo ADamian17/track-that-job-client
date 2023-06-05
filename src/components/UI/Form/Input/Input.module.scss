@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+
+.input {
+  @extend %basic-input;
+  border: 1px solid transparent;
+
+  &.inputError {
+    border: 1px solid $color-red;
+
+    + .inputErrorMsg {
+      color: $color-red;
+    }
+  }
+}

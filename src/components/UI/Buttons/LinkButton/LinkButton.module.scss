@@ -1,0 +1,9 @@
+@use 'abstracts' as *;
+
+.btn {
+  @extend %button;
+
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}

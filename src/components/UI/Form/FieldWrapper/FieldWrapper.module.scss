@@ -1,0 +1,21 @@
+@use 'abstracts' as *;
+.inputWrapper {
+  display: grid;
+  row-gap: 1rem;
+
+  .inputLabelWrapper {
+    .inputLabel {
+      text-transform: capitalize;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.180556px;
+      line-height: 19px;
+    }
+
+    .inputDescription {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 19px;
+    }
+  }
+}

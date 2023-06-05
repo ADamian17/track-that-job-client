@@ -1,0 +1,17 @@
+.goBackBtn {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  column-gap: 1.6rem;
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 19px;
+  text-transform: capitalize;
+
+  .icon {
+    width: 8px;
+    height: 4rem;
+  }
+}

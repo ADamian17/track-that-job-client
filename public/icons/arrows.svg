@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="left" viewBox="0 0 8 10" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 9L2 5l4-4" stroke="#4661E6" stroke-width="2" fill="none" fill-rule="evenodd" />
+    </symbol>
+    <symbol id="down" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1L5 5L9 1" stroke="#4661E6" stroke-width="2" />
+    </symbol>
+
+    <symbol id="up" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 6L5 2L9 6" stroke="#4661E6" stroke-width="2" />
+    </symbol>
+  </defs>
+</svg>

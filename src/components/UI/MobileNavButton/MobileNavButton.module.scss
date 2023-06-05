@@ -1,0 +1,11 @@
+@use 'abstracts' as *;
+
+.menuIcon {
+  width: 2rem;
+  height: 2rem;
+  fill: $color-white;
+
+  @include media-query('md') {
+    display: none;
+  }
+}

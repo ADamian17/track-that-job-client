@@ -1,0 +1,24 @@
+@use 'abstracts' as *;
+
+.dashboardHeader {
+  @extend %dashboard-aside-item;
+
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 0;
+  color: $color-white;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  min-height: 7.2rem;
+  padding: 0 2.4rem;
+
+  @include media-query('md') {
+    align-items: flex-end;
+    border-radius: 1rem;
+    min-height: 13.7rem;
+    padding: 2.4rem;
+  }
+}

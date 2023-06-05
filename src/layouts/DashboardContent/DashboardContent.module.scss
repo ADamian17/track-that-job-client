@@ -1,0 +1,38 @@
+@use 'abstracts' as *;
+
+.dashboardContent {
+  @include grid-layout;
+
+  grid-column: 1 / -1;
+
+  .dashboardContentNav {
+    color: $color-white;
+    background-color: $color-black-default;
+    grid-column: 1 / -1;
+    height: 5.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.4rem;
+  }
+
+  .dashboardJobContainerWrapper {
+    grid-column: 1 / -1;
+    padding: 3.2rem 2.4rem;
+  }
+
+  @include media-query('md') {
+    .dashboardContentNav {
+      grid-column: center-start / center-end;
+      border-radius: 1rem;
+    }
+  }
+
+  @include media-query('xl') {
+    grid-column: 5 / -1;
+
+    .dashboardContentNav {
+      grid-column: 1 / -1;
+    }
+  }
+}

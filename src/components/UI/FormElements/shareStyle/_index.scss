@@ -1,0 +1,13 @@
+@use '../../../../sass/abstracts' as *;
+
+%basic-input {
+  width: 100%;
+  min-height: 4.8rem;
+  padding: 1rem;
+  appearance: none;
+  border: none;
+  border-radius: 0.8rem;
+  background-color: $default-white-bg;
+  font-family: inherit;
+  font-size: 1.6rem;
+}

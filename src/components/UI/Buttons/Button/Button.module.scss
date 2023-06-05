@@ -1,0 +1,80 @@
+@use 'abstracts' as *;
+
+.btn {
+  @extend %button;
+
+  &:hover {
+    box-shadow: 0 0 0.3rem #999898;
+  }
+
+  &.is-primary {
+    @include setBtnStyle($color-purple);
+    @include setAfterBg($color-purple);
+    @include setSpinnerColor($color-purple);
+  }
+
+  &.is-secondary {
+    @include setBtnStyle($color-blue-dark);
+    @include setAfterBg($color-blue-dark);
+  }
+
+  &.is-info {
+    @include setBtnStyle($color-black-blue);
+    @include setAfterBg($color-black-blue);
+  }
+
+  &.is-danger {
+    @include setBtnStyle($color-red);
+    @include setAfterBg($color-red);
+  }
+
+  &.is-link {
+    @include setBtnStyle(transparent);
+    color: $color-black-grey;
+
+    &:hover {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+  }
+
+  .spinner {
+    &::before {
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 6;
+    }
+
+    &::after {
+      border-radius: 50%;
+      box-sizing: border-box;
+      content: '';
+      height: 25px;
+      left: calc(50% - 12px);
+      position: absolute;
+      top: calc(50% - 12px);
+      width: 25px;
+      z-index: 8;
+    }
+
+    &.smooth::after {
+      border-top: 4px solid hsl(0, 0%, 100%);
+      border-left: 4px solid hsl(0, 0%, 100%);
+      border-right: 4px solid hsla(0, 0%, 100%, 0);
+      animation: spin 0.6s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

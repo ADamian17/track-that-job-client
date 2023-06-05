@@ -1,0 +1,5 @@
+@use 'abstracts' as *;
+
+.dashboardItem {
+  @extend %dashboard-aside-item;
+}

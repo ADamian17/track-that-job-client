@@ -1,0 +1,52 @@
+@use './media-queries' as *;
+
+@function ligthenTen($color) {
+  @return lighten($color, 10%);
+}
+
+@mixin setBtnStyle($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: ligthenTen($color); // __function.scss
+    cursor: pointer;
+  }
+}
+
+@mixin setAfterBg($color) {
+  &.is-loading::after {
+    background-color: $color;
+  }
+}
+
+@mixin setSpinnerColor($color) {
+  .spinner::before {
+    background-color: $color;
+  }
+}
+
+@mixin grid-layout {
+  column-gap: 2.4rem;
+  display: grid;
+  grid-template-columns: 0 [center-start] repeat(4, minmax(min-content, 1fr)) [center-end] 0;
+  justify-content: center;
+
+  @include media-query('md') {
+    grid-template-columns:
+      0 [center-start] repeat(8, minmax(min-content, 1fr))
+      [center-end] 0;
+    align-items: start;
+  }
+
+  @include media-query('lg') {
+    grid-template-columns:
+      1.6rem [center-start] repeat(8, minmax(min-content, 1fr))
+      [center-end] 1.6rem;
+  }
+
+  @include media-query('xl') {
+    grid-template-columns:
+      1fr [center-start] repeat(12, minmax(min-content, 7rem))
+      [center-end] 1fr;
+  }
+}
