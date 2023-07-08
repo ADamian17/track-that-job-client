@@ -3,19 +3,23 @@ import DashboardLayout from '@/layouts/DashboardLayout'
 import { useEffect } from 'react';
 import useAuthStore from '@/zustand/authStore';
 import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
 
 export default function Home() {
-  const router = useRouter();
-  const { currentUser } = useAuthStore(state => state);
-
-  useEffect(() => {
-    !currentUser && router.push("/sign-in")
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <DashboardLayout>
       <JobsContainer />
     </DashboardLayout>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+
+  console.log(session);
+
+  return {
+    props: {},
+  };
+};
