@@ -4,8 +4,8 @@ export type JobStatusType =
   | 'all'
   | 'applied'
   | 'rejected'
-  | 'no response'
-  | 'in progress'
+  | 'no_response'
+  | 'in_progress'
   | 'completed';
 
 type UseJobStatusStoreType = {

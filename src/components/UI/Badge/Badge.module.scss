@@ -1,0 +1,22 @@
+@use 'abstracts' as *;
+
+.badge {
+  background-color: $color-white-smoke;
+  border-radius: 10px;
+  color: $color-blue-dark;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  padding: 5px 1.6rem;
+  text-decoration: none;
+  transition: background 0.25s ease;
+
+  &.active {
+    background-color: $color-blue-dark;
+    color: $color-white;
+  }
+
+  &:not(&.active):hover {
+    background: $color-white-blue;
+  }
+}
