@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import ChevronDown from '../../../svgIcons/ChevronDown';
-import ChevronUp from '../../../svgIcons/ChevronUp';
-import IconCheck from '../../../svgIcons/IconCheck';
+// import ChevronDown from '../../../svgIcons/ChevronDown';
+// import ChevronUp from '../../../svgIcons/ChevronUp';
+// import IconCheck from '../../../svgIcons/IconCheck';
 
 type SelectProps = {
   currentCategory: string | undefined;
@@ -47,7 +47,7 @@ const Select: React.FC<SelectProps> = ({
     <div className="select">
       <div className="select__input" onClick={() => setShow(!show)}>
         <p>{currentCategory}</p>
-        {show ? <ChevronUp /> : <ChevronDown />}
+        {/* {show ? <ChevronUp /> : <ChevronDown />} */}
       </div>
 
       <div className={`options options${show ? '--show' : '--hidde'}`}>
@@ -56,12 +56,11 @@ const Select: React.FC<SelectProps> = ({
             key={option}
             data-value={option}
             onClick={handleClick}
-            className={`categories__item ${
-              option === currentOption ? 'categories__item--current' : ''
-            }`}
+            className={`categories__item ${option === currentOption ? 'categories__item--current' : ''
+              }`}
           >
             <span>{option}</span>
-            {option === currentOption ? <IconCheck /> : ''}
+            {/* {option === currentOption ? <IconCheck /> : ''} */}
           </div>
         ))}
       </div>

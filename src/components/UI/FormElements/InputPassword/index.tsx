@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import EyeIcon from '../../../svgIcons/Eye';
-import EyeBlockedIcon from '../../../svgIcons/EyeBlocked';
+// import EyeIcon from '../../../svgIcons/Eye';
+// import EyeBlockedIcon from '../../../svgIcons/EyeBlocked';
 import Input, { InputProps } from '../Input';
 
 import styles from './InputPassword.module.scss';
@@ -22,11 +22,11 @@ const InputPassword: React.FC<InputProps> = ({
   };
 
   const inputType = showPassword ? 'text' : 'password';
-  const eyeIcon = showPassword ? (
-    <EyeBlockedIcon onClick={handleShowPassword} className={styles.inputIcon} />
-  ) : (
-    <EyeIcon onClick={handleShowPassword} className={styles.inputIcon} />
-  );
+  // const eyeIcon = showPassword ? (
+  //   <EyeBlockedIcon onClick={handleShowPassword} className={styles.inputIcon} />
+  // ) : (
+  //   <EyeIcon onClick={handleShowPassword} className={styles.inputIcon} />
+  // );
 
   return (
     <div className={styles.inputContainer}>
@@ -40,7 +40,7 @@ const InputPassword: React.FC<InputProps> = ({
         name={name}
         {...rest}
       />
-      {eyeIcon}
+      {/* {eyeIcon} */}
     </div>
   );
 };
