@@ -4,9 +4,9 @@ import { SessionProvider } from 'next-auth/react'
 
 import '@/styles/main.scss'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider session={pageProps?.session}>
+    <>
       <Head>
         <meta name="description" content="Track that job" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Track that job</title>
       </Head>
 
-      <Component {...pageProps} />
-    </SessionProvider>
+      <SessionProvider session={pageProps?.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </>
   )
 }
