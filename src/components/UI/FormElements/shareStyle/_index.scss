@@ -1,4 +1,4 @@
-@use '../../../../sass/abstracts' as *;
+@use 'abstracts' as *;
 
 %basic-input {
   width: 100%;
@@ -7,7 +7,7 @@
   appearance: none;
   border: none;
   border-radius: 0.8rem;
-  background-color: $default-white-bg;
+  // background-color: $default-white-bg;
   font-family: inherit;
   font-size: 1.6rem;
 }
