@@ -5,19 +5,12 @@ import Link from "next/link";
 
 type BadgeType = {
   badgeText: string;
-  badgeLink: string;
-  active?: boolean
-  handleClick: (e: React.MouseEvent<HTMLAnchorElement>) => void
 };
 
-const Badge: React.FC<BadgeType> = ({ badgeText, badgeLink, active, handleClick }) => (
-  <Link
-    href={badgeLink || ''}
-    className={`${styles.badge} ${active && styles.active}`}
-    onClick={handleClick}
-  >
+const Badge: React.FC<BadgeType> = ({ badgeText }) => (
+  <span className={styles.badge}>
     {badgeText}
-  </Link>
+  </span>
 )
 
 export default Badge;

@@ -5,4 +5,15 @@
   grid-auto-rows: min-content;
   min-height: 73.4rem;
   row-gap: 1.6rem;
+
+  @include media-query('xl') {
+    height: 113rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none; /* for Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }

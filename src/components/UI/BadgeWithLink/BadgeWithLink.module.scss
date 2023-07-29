@@ -4,12 +4,20 @@
   background-color: $color-white-smoke;
   border-radius: 10px;
   color: $color-blue-dark;
-  display: inline-block;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 600;
   padding: 5px 1.6rem;
   text-decoration: none;
-  text-transform: capitalize;
   transition: background 0.25s ease;
+  text-transform: capitalize;
+
+  &.active {
+    background-color: $color-blue-dark;
+    color: $color-white;
+  }
+
+  &:not(&.active):hover {
+    background: $color-white-blue;
+  }
 }

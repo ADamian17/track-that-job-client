@@ -21,4 +21,4 @@ export type JobType = {
   __v: number;
 };
 
-export type JobsType = Array<JobsType>;
+export type JobsType = Array<JobType>;
