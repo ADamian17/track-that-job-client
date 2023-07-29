@@ -9,18 +9,20 @@ export default NextAuth({
       credentials: {},
 
       authorize: async (credentials) => {
-        const { email, password } = credentials as Record<
-          'email' | 'password',
-          string
-        >;
-
-        const user = await Auth.signin({ email, password });
-
-        if (user) {
-          return {
-            id: user.id,
-            signedJwt: user.signedJwt,
-          };
+        try {
+          const { email, password } = credentials as Record<
+            'email' | 'password',
+            string
+          >;
+          const user = await Auth.signin({ email, password });
+          if (user) {
+            return {
+              id: user.id,
+              signedJwt: user.signedJwt,
+            };
+          }
+        } catch (error) {
+          console.log(error);
         }
 
         return null;
@@ -29,6 +31,9 @@ export default NextAuth({
   ],
   session: {
     strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/sign-in',
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {

@@ -1,20 +1,30 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { getSession } from 'next-auth/react';
 
-import useAuthStore from '@/zustand/authStore';
-
-export default function Home() {
-  // const router = useRouter();
-  // const { currentUser } = useAuthStore(state => state);
-
-  // useEffect(() => {
-  //   !currentUser ? router.push("/sign-in") : router.push("/dashboard")
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
-
+export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div data-testid="home-page">
+    <div>
       ...authenticating
     </div>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    redirect: {
+      destination: '/dashboard',
+      permanent: false,
+    },
+  };
+};

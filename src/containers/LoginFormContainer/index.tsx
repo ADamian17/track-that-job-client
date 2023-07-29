@@ -23,12 +23,12 @@ const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
         redirect: false
       });
 
-      console.log(res);
-
-      setLoading(false);
-      // router.push('/');
-      // setEmail('');
-      // setPassword('');
+      if (res?.ok) {
+        setLoading(false);
+        router.replace('/dashboard')
+        setEmail('');
+        setPassword('');
+      }
     } catch (error) {
       setLoading(false);
       setError(true);
