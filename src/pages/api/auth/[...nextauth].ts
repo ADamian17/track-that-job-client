@@ -9,20 +9,16 @@ export default NextAuth({
       credentials: {},
 
       authorize: async (credentials) => {
-        try {
-          const { email, password } = credentials as Record<
-            'email' | 'password',
-            string
-          >;
-          const user = await Auth.signin({ email, password });
-          if (user) {
-            return {
-              id: user.id,
-              signedJwt: user.signedJwt,
-            };
-          }
-        } catch (error) {
-          console.log(error);
+        const { email, password } = credentials as Record<
+          'email' | 'password',
+          string
+        >;
+        const user = await Auth.signin({ email, password });
+        if (user) {
+          return {
+            id: user.id,
+            signedJwt: user.signedJwt,
+          };
         }
 
         return null;

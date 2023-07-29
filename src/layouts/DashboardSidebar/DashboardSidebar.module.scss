@@ -62,13 +62,13 @@
         opacity: 1;
         translate: 0 0;
         z-index: 2;
+        height: fit-content;
       }
     }
 
     @include media-query('xl') {
       grid-template-columns: none;
       grid-template-rows: repeat(2, min-content);
-      height: fit-content;
       row-gap: 2.4rem;
     }
   }
@@ -80,5 +80,6 @@
 
   @include media-query('xl') {
     grid-column: 1 / span 4;
+    height: 52.9rem;
   }
 }

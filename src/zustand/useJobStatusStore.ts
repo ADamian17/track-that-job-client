@@ -1,15 +1,8 @@
+import { JobStatusType } from '@/types';
 import { create } from 'zustand';
 
-export type JobStatusType =
-  | 'all'
-  | 'applied'
-  | 'rejected'
-  | 'no_response'
-  | 'in_progress'
-  | 'completed';
-
 type UseJobStatusStoreType = {
-  currentJobStatus: JobStatusType;
+  currentJobStatus: JobStatusType | 'all';
   setCurrentJobStatus: (
     jobStatus: UseJobStatusStoreType['currentJobStatus']
   ) => void;

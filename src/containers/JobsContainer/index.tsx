@@ -4,11 +4,15 @@ import EmptyJobList from "@/components/EmptyJobList";
 
 import styles from "./JobsContainer.module.scss";
 import Link from "next/link";
+import { JobsType } from "@/types";
 
-type JobsContainerType = {};
+type JobsContainerType = {
+  jobsData: JobsType
+};
 
-const JobsContainer: React.FC<JobsContainerType> = (props) => {
-  // const jobs: string[] = [];
+const JobsContainer: React.FC<JobsContainerType> = ({ jobsData }) => {
+  console.log({ jobsData });
+
   const jobs = [
     'job 1',
     'job 2',

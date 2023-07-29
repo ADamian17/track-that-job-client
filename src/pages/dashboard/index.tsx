@@ -1,24 +1,25 @@
-import { useEffect } from 'react';
 import JobsContainer from '@/containers/JobsContainer'
 import DashboardLayout from '@/layouts/DashboardLayout'
-import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { apiUrl } from '@/utils';
-import { AppProps } from 'next/app';
+import { Jobs } from '@/libs/jobs';
+import { JobsType } from '@/types';
 
-export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ jobsData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <DashboardLayout>
-      <JobsContainer />
+      <JobsContainer jobsData={jobsData} />
     </DashboardLayout>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<{
+  jobsData: JobsType
+}> = async (context) => {
   const session = await getSession({ req: context.req }) as { user: { signedJwt?: string } };
 
-  if (!session) {
+  if (!session || !session?.user?.signedJwt) {
     return {
       redirect: {
         destination: '/sign-in/',
@@ -27,13 +28,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  // const res = await fetch(apiUrl`/jobs`, {
-  //   headers: { authorization: `Bearer ${session?.user?.signedJwt}` }
-  // })
-
-  // const data = await res.json()
+  const jwtToken = session?.user?.signedJwt;
+  const data = await Jobs.getAll(jwtToken)
 
   return {
-    props: {},
+    props: {
+      jobsData: data.jobs
+    },
   };
 };
