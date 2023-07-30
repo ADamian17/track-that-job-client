@@ -5,14 +5,16 @@ exports[`Badge Component should match snapshot 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span
-        class="badge"
+      <a
+        class="badge undefined"
+        href=""
       />
     </div>
   </body>,
   "container": <div>
-    <span
-      class="badge"
+    <a
+      class="badge undefined"
+      href=""
     />
   </div>,
   "debug": [Function],

@@ -1,4 +1,5 @@
 import { FetchWrapper } from '@/services/FetchWrapper';
+import { TokenExpiredErrorType } from '@/types';
 import { apiUrl } from '@/utils';
 
 type UserDataType = {
@@ -16,6 +17,12 @@ class Auth {
   static signin(data: SigninDataType) {
     return FetchWrapper.post(apiUrl`/auth/login`, {
       body: JSON.stringify(data),
+    }).then((res) => res.json());
+  }
+
+  static checkJwtToken(token: string): Promise<TokenExpiredErrorType> {
+    return FetchWrapper.get(apiUrl`/auth/validate-token`, {
+      headers: { authorization: `Bearer ${token}` },
     }).then((res) => res.json());
   }
 

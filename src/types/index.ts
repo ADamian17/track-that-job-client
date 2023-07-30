@@ -22,3 +22,22 @@ export type JobType = {
 };
 
 export type JobsType = Array<JobType>;
+
+export type SessionDataType = {
+  user: {
+    signedJwt?: string;
+  };
+};
+
+export type JobDataResponseType = {
+  status: number;
+  count: number;
+  jobs: JobsType;
+};
+
+export type TokenExpiredErrorType = {
+  status: number;
+  name: string;
+  message: string;
+  expiredAt: string;
+};

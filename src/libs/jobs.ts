@@ -1,12 +1,8 @@
 import { FetchWrapper } from '@/services/FetchWrapper';
-import { JobsType } from '@/types';
+import { JobDataResponseType, JobsType, TokenExpiredErrorType } from '@/types';
 import { apiUrl } from '@/utils';
 
-type GetAllResponse = {
-  status: number;
-  count: number;
-  jobs: JobsType;
-};
+export type GetAllResponse = JobDataResponseType | TokenExpiredErrorType;
 
 export class Jobs {
   static getAll(token: string): Promise<GetAllResponse> {

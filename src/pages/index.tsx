@@ -1,3 +1,4 @@
+import { SessionDataType } from '@/types';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getSession } from 'next-auth/react';
 
@@ -10,9 +11,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession({ req: context.req });
+  const session = await getSession({ req: context.req }) as SessionDataType;
 
-  if (!session) {
+  if (!session || !session?.user?.signedJwt) {
     return {
       redirect: {
         destination: '/sign-in',

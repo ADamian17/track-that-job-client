@@ -9,14 +9,13 @@ import Badge from "@/components/UI/Badge";
 import JobCard from "@/components/JobCard";
 
 type JobsContainerType = {
-  jobsData: JobsType
+  jobsData: JobsType | null
 };
 
 const JobsContainer: React.FC<JobsContainerType> = ({ jobsData }) => {
   const isEmpty = jobsData && jobsData.length <= 0;
   const jobList = jobsData && jobsData.map(job => (<JobCard key={job._id} {...job} />))
   const jobsContent = isEmpty ? <EmptyJobList /> : jobList
-  console.log({ jobsData });
 
   return (
     <section className={styles.jobsContainers}>

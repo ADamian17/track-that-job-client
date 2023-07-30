@@ -3,10 +3,10 @@ import DashboardLayout from '@/layouts/DashboardLayout'
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { apiUrl } from '@/utils';
-import { Jobs } from '@/libs/jobs';
-import { JobsType } from '@/types';
+import { GetAllResponse, Jobs } from '@/libs/jobs';
+import { JobsType, SessionDataType, TokenExpiredErrorType } from '@/types';
 
-export default function Home({ jobsData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function DashboardPage({ jobsData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <DashboardLayout>
       <JobsContainer jobsData={jobsData} />
@@ -15,11 +15,15 @@ export default function Home({ jobsData }: InferGetServerSidePropsType<typeof ge
 }
 
 export const getServerSideProps: GetServerSideProps<{
-  jobsData: JobsType
+  jobsData: JobsType | null
 }> = async (context) => {
-  const session = await getSession({ req: context.req }) as { user: { signedJwt?: string } };
+  const session = await getSession({ req: context.req }) as SessionDataType;
+  const jwtToken = session?.user?.signedJwt;
+  const data = await Jobs.getAll(jwtToken!);
+  const isValid = session && data.status !== 401
+  let jobsData: JobsType | null = [];
 
-  if (!session || !session?.user?.signedJwt) {
+  if (!isValid) {
     return {
       redirect: {
         destination: '/sign-in/',
@@ -28,12 +32,13 @@ export const getServerSideProps: GetServerSideProps<{
     }
   }
 
-  const jwtToken = session?.user?.signedJwt;
-  const data = await Jobs.getAll(jwtToken)
+  if ("jobs" in data) {
+    jobsData = data?.jobs
+  }
 
   return {
     props: {
-      jobsData: data.jobs
+      jobsData
     },
   };
 };

@@ -79,3 +79,12 @@
     outline: 1px solid $color-blue-dark;
   }
 }
+
+%card {
+  background-color: $color-white;
+  border-radius: 10px;
+
+  @include media-query('xl') {
+    padding: 2.8rem 3.2rem;
+  }
+}
