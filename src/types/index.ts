@@ -41,3 +41,7 @@ export type TokenExpiredErrorType = {
   message: string;
   expiredAt: string;
 };
+
+export type JobFilterByType = {
+  filterBy?: JobStatusType;
+};

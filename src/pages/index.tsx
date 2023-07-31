@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const session = await getSession({ req: context.req }) as SessionDataType;
   const jwtToken = session?.user?.signedJwt;
-  const data = await Jobs.getAll(jwtToken!);
+  const data = await Jobs.getAll(jwtToken!, context.query);
   const isValid = session && data.status !== 401
   let jobsData: JobsType | null = [];
 

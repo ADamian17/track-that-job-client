@@ -16,7 +16,13 @@
     width: 10.2rem;
   }
 
-  .copy {
+  .headline {
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  .subcopy {
     margin-bottom: 1rem;
   }
 }

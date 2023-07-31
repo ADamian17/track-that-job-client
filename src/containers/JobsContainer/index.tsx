@@ -14,7 +14,7 @@ type JobsContainerType = {
 const JobsContainer: React.FC<JobsContainerType> = ({ jobsData }) => {
   const isEmpty = jobsData && jobsData.length <= 0;
   const jobList = jobsData && jobsData.map(job => (<JobCard key={job._id} {...job} />))
-  const jobsContent = isEmpty ? <EmptyJobList /> : jobList
+  const jobsContent = isEmpty ? <EmptyJobList len={jobsData.length} /> : jobList
 
   return (
     <section className={styles.jobsContainers}>

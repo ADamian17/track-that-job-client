@@ -26,6 +26,10 @@
       grid-column: center-start / center-end;
       border-radius: 1rem;
     }
+
+    .dashboardJobContainerWrapper {
+      padding: 3.2rem 0;
+    }
   }
 
   @include media-query('xl') {
