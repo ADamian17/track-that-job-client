@@ -25,7 +25,7 @@ const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
 
       if (res?.ok) {
         setLoading(false);
-        router.replace('/dashboard')
+        router.replace('/')
         setEmail('');
         setPassword('');
       }

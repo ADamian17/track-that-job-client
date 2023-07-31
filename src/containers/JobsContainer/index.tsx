@@ -1,12 +1,11 @@
 import React from "react";
 
+import { JobsType } from "@/types";
 import EmptyJobList from "@/components/EmptyJobList";
+import JobCard from "@/components/JobCard";
 
 import styles from "./JobsContainer.module.scss";
-import Link from "next/link";
-import { JobsType } from "@/types";
-import Badge from "@/components/UI/Badge";
-import JobCard from "@/components/JobCard";
+
 
 type JobsContainerType = {
   jobsData: JobsType | null

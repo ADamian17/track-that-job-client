@@ -4,10 +4,10 @@ import LinkButton from "../UI/Buttons/LinkButton";
 
 const AddJobButton = () => (
   <LinkButton
-    href='/new-job'
+    href='/job/new'
     variant='is-primary'
   >
-    + Add Feedback
+    + Add Job
   </LinkButton>
 )
 

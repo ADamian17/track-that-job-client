@@ -20,7 +20,9 @@ class Auth {
     }).then((res) => res.json());
   }
 
-  static checkJwtToken(token: string): Promise<TokenExpiredErrorType> {
+  static checkJwtToken(
+    token: string | undefined | null
+  ): Promise<TokenExpiredErrorType> {
     return FetchWrapper.get(apiUrl`/auth/validate-token`, {
       headers: { authorization: `Bearer ${token}` },
     }).then((res) => res.json());

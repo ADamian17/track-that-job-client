@@ -17,7 +17,7 @@ export default function Login() {
     const isValid = session && data.status !== 401
 
     if (isValid) {
-      router.replace('/dashboard')
+      router.replace('/')
     } else {
       setIsLoading(false)
     }

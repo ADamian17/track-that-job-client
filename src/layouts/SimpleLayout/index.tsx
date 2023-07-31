@@ -5,19 +5,19 @@ import style from "./SimpleLayout.module.scss";
 
 type SimpleLayoutProps = {
   children: React.ReactNode;
-  withEditJob?: boolean;
+  editJobUrl?: string
 }
 
-const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, withEditJob }) => {
+const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editJobUrl }) => {
   return (
     <main className={style.simpleLayout}>
       <nav className={style.simpleLayoutNav}>
         <GoBackButton />
 
         {
-          withEditJob && (
+          editJobUrl && (
             <LinkButton
-              href="/edit-job/"
+              href={editJobUrl}
               variant="is-secondary"
             >
               Edit Job
