@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 export default function EditJob() {
   const router = useRouter();
-  console.log({ router });
+  const id = router.query?.slug
 
   return (
     <SimpleLayout>

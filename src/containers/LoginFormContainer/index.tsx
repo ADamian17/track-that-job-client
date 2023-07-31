@@ -25,7 +25,7 @@ const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
 
       if (res?.ok) {
         setLoading(false);
-        router.replace('/dashboard')
+        router.replace('/')
         setEmail('');
         setPassword('');
       }
@@ -38,7 +38,7 @@ const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
   return (
     <div style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="text" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <input type="submit" value="sign in" />
       </form>

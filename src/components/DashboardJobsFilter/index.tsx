@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 
 import { jobsFilters } from "@/utils";
-import Badge from "../UI/Badge";
+import { JobStatusType } from "@/types";
+import BadgeWithLink from "../UI/BadgeWithLink";
 import DashboardItem from "../DashboardItem";
+import useJobStatusStore from "@/zustand/useJobStatusStore";
 
 import styles from "./DashboardJobsFilter.module.scss";
-import useJobStatusStore, { JobStatusType } from "@/zustand/useJobStatusStore";
 
 const DashboardJobsFilter: React.FC = (props) => {
   const { currentJobStatus, setCurrentJobStatus } = useJobStatusStore(state => state)
@@ -17,7 +17,7 @@ const DashboardJobsFilter: React.FC = (props) => {
     const handleClick = () => setCurrentJobStatus(current as JobStatusType);
 
     return (
-      <Badge
+      <BadgeWithLink
         key={filter.text}
         badgeText={filter.text}
         badgeLink={filter.href}

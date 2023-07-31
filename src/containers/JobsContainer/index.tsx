@@ -1,33 +1,20 @@
 import React from "react";
 
+import { JobsType } from "@/types";
 import EmptyJobList from "@/components/EmptyJobList";
+import JobCard from "@/components/JobCard";
 
 import styles from "./JobsContainer.module.scss";
-import Link from "next/link";
 
-type JobsContainerType = {};
 
-const JobsContainer: React.FC<JobsContainerType> = (props) => {
-  // const jobs: string[] = [];
-  const jobs = [
-    'job 1',
-    'job 2',
-    'job 3',
-    'job 4',
-    'job 5',
-    'job 6',
-    'job 7',
-    'job 8',
-    'job 9',
-    'job 10',
-    'job 11',
-    'job 12',
-    'job 13',
-    'job 14',
-  ];
-  const isEmpty = jobs.length <= 0
-  const jobList = jobs && jobs.map(job => (<div key={job}><Link href="/job-detail">{job}</Link></div>))
-  const jobsContent = isEmpty ? <EmptyJobList /> : jobList
+type JobsContainerType = {
+  jobsData: JobsType | null
+};
+
+const JobsContainer: React.FC<JobsContainerType> = ({ jobsData }) => {
+  const isEmpty = jobsData && jobsData.length <= 0;
+  const jobList = jobsData && jobsData.map(job => (<JobCard key={job._id} {...job} />))
+  const jobsContent = isEmpty ? <EmptyJobList len={jobsData.length} /> : jobList
 
   return (
     <section className={styles.jobsContainers}>

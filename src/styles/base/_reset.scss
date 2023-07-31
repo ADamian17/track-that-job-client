@@ -16,10 +16,10 @@ html {
 body {
   min-height: 100vh;
   background-color: $default-white-bg;
-  font-family: $default-font-family;
   color: $color-black-blue;
   box-sizing: border-box;
   font-size: 1.6rem;
+  overflow: hidden;
 }
 
 ul {

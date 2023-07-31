@@ -1,31 +1,41 @@
-export const apiUrl = (string: TemplateStringsArray) => {
-  const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
-  return `${url}${string[0]}`;
+export const apiUrl = (
+  string: TemplateStringsArray,
+  query?: string
+): string => {
+  const url: string =
+    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
+  let formatedUrl: string = `${url}${string[0]}`;
+
+  if (query) {
+    return formatedUrl + query;
+  }
+
+  return formatedUrl;
 };
 
 export const jobsFilters = [
   {
     text: 'All',
-    href: '/dashboard',
+    href: '/',
   },
   {
     text: 'applied',
-    href: '/dashboard?filterBy=applied',
+    href: '?filterBy=applied',
   },
   {
     text: 'Complete',
-    href: '/dashboard?filterBy=complete',
+    href: '?filterBy=complete',
   },
   {
     text: 'Rejected',
-    href: '/dashboard?filterBy=rejected',
+    href: '?filterBy=rejected',
   },
   {
     text: 'No response',
-    href: '/dashboard?filterBy=no_response',
+    href: '?filterBy=no_response',
   },
   {
     text: 'In progress',
-    href: '/dashboard?filterBy=in_progress',
+    href: '?filterBy=in_progress',
   },
 ];
