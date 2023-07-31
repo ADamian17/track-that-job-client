@@ -3,9 +3,11 @@
 .dashboardSidebar {
   grid-column: 1 / -1;
   height: 7.2rem;
+  position: relative;
 
   .dashboardHeaderWrapper {
     --transition-speed: 0.3s;
+    overflow: hidden;
 
     &.activeNav {
       position: fixed;
@@ -48,6 +50,7 @@
       height: calc(100vh - 7.2rem);
       translate: 100% 0;
       opacity: 0;
+      pointer-events: none;
       transition: translate var(--transition-speed) ease-in-out;
     }
 
