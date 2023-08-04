@@ -50,7 +50,6 @@
       height: calc(100vh - 7.2rem);
       translate: 100% 0;
       opacity: 0;
-      pointer-events: none;
       animation: sidebar-animation var(--transition-speed) ease-in-out;
     }
 
