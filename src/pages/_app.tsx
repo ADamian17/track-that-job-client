@@ -11,6 +11,7 @@ const jost = Jost({
   subsets: ['latin'],
   weight: ["400", "600", "700"],
   style: "normal",
+  variable: "--primary-font"
 })
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -25,7 +26,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <SessionProvider session={pageProps?.session}>
-        <div style={jost.style}>
+        <div className={jost.className}>
           <Component {...pageProps} />
         </div>
       </SessionProvider>

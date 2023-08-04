@@ -7,7 +7,6 @@
 
   .dashboardHeaderWrapper {
     --transition-speed: 0.3s;
-    overflow: hidden;
 
     &.activeNav {
       position: fixed;
@@ -27,7 +26,7 @@
         top: 7.2rem;
         width: 100%;
         z-index: -1;
-        transition: opacity var(--transition-speed) linear;
+        animation: backdrop-animation var(--transition-speed) linear;
       }
 
       .navAside {
@@ -44,14 +43,14 @@
     }
 
     .navAside {
+      display: none;
       z-index: -1;
       position: absolute;
       top: 7.2rem;
       height: calc(100vh - 7.2rem);
       translate: 100% 0;
       opacity: 0;
-      pointer-events: none;
-      transition: translate var(--transition-speed) ease-in-out;
+      animation: sidebar-animation var(--transition-speed) ease-in-out;
     }
 
     @include media-query('md') {
@@ -66,6 +65,8 @@
         translate: 0 0;
         z-index: 2;
         height: fit-content;
+        animation: none;
+        display: grid;
       }
     }
 
