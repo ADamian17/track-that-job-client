@@ -20,12 +20,16 @@ class Auth {
     }).then((res) => res.json());
   }
 
-  static checkJwtToken(
+  static isValidJwtToken(
     token: string | undefined | null
-  ): Promise<TokenExpiredErrorType> {
+  ): Promise<boolean> | null {
+    if (!token) return null;
+
     return FetchWrapper.get(apiUrl`/auth/validate-token`, {
       headers: { authorization: `Bearer ${token}` },
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .then((data) => (data.status !== 401 ? true : false));
   }
 
   // static signup(data: UserDataType) {

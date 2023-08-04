@@ -6,17 +6,23 @@ import LoginFormContainer from "@/containers/LoginFormContainer";
 import { SessionDataType } from "@/types";
 import Auth from "@/libs/auth";
 
-export default function Login() {
+export default function Signin() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
+
   const handleAuthenticateUser = useCallback(async () => {
     const session = await getSession() as SessionDataType;
-    const jwtToken = session?.user?.signedJwt;
-    const data = await Auth.checkJwtToken(jwtToken!);
-    const isValid = session && data.status !== 401
+    const prevUrlHome = typeof document !== undefined && document.referrer !== "/"
 
-    if (isValid) {
+    const isValidJwtToken = (
+      session &&
+      session?.user?.signedJwt &&
+      await Auth.isValidJwtToken(session?.user?.signedJwt) &&
+      !prevUrlHome
+    );
+
+    if (isValidJwtToken) {
       router.replace('/')
     } else {
       setIsLoading(false)
