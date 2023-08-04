@@ -3,7 +3,7 @@
 .jobsContainers {
   display: grid;
   grid-auto-rows: min-content;
-  height: 113rem;
+  max-height: 77svh;
   row-gap: 1.6rem;
   overflow: scroll;
   overflow-x: hidden;
