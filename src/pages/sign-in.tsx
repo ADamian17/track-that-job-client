@@ -2,9 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-import LoginFormContainer from "@/containers/LoginFormContainer";
 import { SessionDataType } from "@/types";
 import Auth from "@/libs/auth";
+import SignInContainer from "@/containers/SignInContainer";
+import SigninSignupLayout from "@/layouts/SigninSignupLayout";
 
 export default function Signin() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +40,14 @@ export default function Signin() {
   }
 
   return (
-    <LoginFormContainer />
+    <SigninSignupLayout
+      formHeading={'Sign in to your account'}
+      redirectCopy={`Don't have an account?`}
+      ctaText={'Sign Up'}
+      ctaLink={'/sign-up'}
+      location="Sign In"
+    >
+      <SignInContainer />
+    </SigninSignupLayout>
   )
 }

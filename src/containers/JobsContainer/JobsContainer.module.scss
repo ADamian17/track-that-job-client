@@ -13,4 +13,12 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @include media-query('md') {
+    max-height: 60svh;
+  }
+
+  @include media-query('lg') {
+    max-height: 80svh;
+  }
 }

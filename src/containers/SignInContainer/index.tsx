@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from 'next-auth/react';
 
-import styles from "./LoginFormContainer.module.scss";
+import ContainerWhite from "@/components/UI/ContainerWhite";
+
+import styles from "./SignInContainer.module.scss";
 
 type LoginFormContainerType = {};
 
-const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
+const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,14 +38,14 @@ const LoginFormContainer: React.FC<LoginFormContainerType> = (props) => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <ContainerWhite>
       <form onSubmit={handleSubmit}>
         <input type="text" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <input type="submit" value="sign in" />
       </form>
-    </div>
+    </ContainerWhite>
   )
 };
 
-export default LoginFormContainer;
+export default SignInContainer;

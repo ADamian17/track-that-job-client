@@ -1,0 +1,87 @@
+@use 'abstracts' as *;
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2.4rem;
+
+  .contentWrapper {
+    width: 100%;
+    display: grid;
+    row-gap: 1.6rem;
+  }
+
+  .headline {
+    text-transform: capitalize;
+    justify-self: center;
+    font-weight: 700;
+    font-size: 3.2rem;
+    color: $color-black-default;
+  }
+
+  .subcopy {
+    justify-self: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -0.25px;
+  }
+
+  .redirectCopy {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: $color-black-grey;
+
+    a {
+      color: $color-blue-dark;
+    }
+  }
+
+  @include media-query('md') {
+    padding: 2.8rem 3.2rem;
+    justify-content: center;
+    padding: 4rem 0;
+
+    .contentWrapper {
+      max-width: 50.4rem;
+    }
+
+    .headline {
+      font-size: 4.2rem;
+    }
+
+    .subcopy {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+// .fromContainer {
+//   width: 100%;
+//   background-color: $color-white;
+//   border-radius: 1rem;
+//   padding: 4.4rem 2.4rem;
+
+//   @media screen and (min-width: 768px) {
+//     max-width: 50.4rem;
+//   }
+
+//   form {
+//     display: grid;
+//     row-gap: 1.6rem;
+
+//     label {
+//       font-weight: 700;
+//       font-size: 1.8rem;
+//       letter-spacing: -0.180556px;
+//     }
+
+//     button {
+//       font-weight: 700;
+//       margin-top: 2.4rem;
+//       height: 5rem;
+//       font-size: 1.6rem;
+//     }
+//   }
+// }
