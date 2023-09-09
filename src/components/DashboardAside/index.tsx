@@ -35,8 +35,22 @@ const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
       <DashboardJobsFilter />
 
       <DashboardItem>
-        <Link href="/profile">Profile</Link>
-        <p onClick={handleLogout}>Logout</p>
+        <Link href="/profile" className={styles.asideNavItem}>
+          <span>Profile</span>
+          <svg>
+            <use href='/icons/aside-icons.svg#icon-user'></use>
+          </svg>
+        </Link>
+
+        <p
+          onClick={handleLogout}
+          className={styles.asideNavItem}
+        >
+          <span>Logout</span>
+          <svg>
+            <use href='/icons/aside-icons.svg#icon-logout'></use>
+          </svg>
+        </p>
       </DashboardItem>
     </aside>
   )

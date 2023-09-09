@@ -1,6 +1,28 @@
 @use 'abstracts' as *;
 
 .dashboardAside {
+  .asideNavItem {
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+    color: $color-blue-dark;
+    display: grid;
+    grid-template-columns: min-content 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: background 0.25s ease;
+    padding: 0 8px;
+    border-radius: 10px;
+
+    svg {
+      justify-self: center;
+      fill: currentColor;
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
   @include media-query('md') {
     column-gap: 1rem;
     display: grid;
@@ -11,5 +33,12 @@
     grid-template-columns: none;
     grid-template-rows: repeat(2, min-content);
     row-gap: 2.4rem;
+
+    .asideNavItem {
+      &:hover {
+        cursor: pointer;
+        background-color: $color-white-smoke;
+      }
+    }
   }
 }
