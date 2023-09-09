@@ -8,6 +8,7 @@ import useJobStatusStore from '@/zustand/useJobStatusStore';
 import { JobStatusType } from '@/types';
 
 import styles from "./DashboardAside.module.scss";
+import Link from 'next/link';
 
 type DashboardSidebarProps = {
   className?: string
@@ -34,7 +35,7 @@ const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
       <DashboardJobsFilter />
 
       <DashboardItem>
-        <p>Account</p>
+        <Link href="/profile">Profile</Link>
         <p onClick={handleLogout}>Logout</p>
       </DashboardItem>
     </aside>

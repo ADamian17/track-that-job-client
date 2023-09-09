@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { signIn } from 'next-auth/react';
+import { useRouter } from "next/router";
 
-import ContainerWhite from "@/components/UI/ContainerWhite";
-
-import styles from "./SignInContainer.module.scss";
+import Button from "@/components/UI/Buttons/Button";
+import Form from "@/components/UI/Form";
 
 type LoginFormContainerType = {};
 
 const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
   const router = useRouter();
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(false);
+
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,13 @@ const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
     e.preventDefault();
     try {
       setLoading(true);
+
+      if (email.trim() === "") {
+        setEmailError(true)
+        setLoading(false);
+        return;
+      }
+
       const res = await signIn('credentials', {
         email,
         password,
@@ -38,13 +46,29 @@ const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
   };
 
   return (
-    <ContainerWhite>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="submit" value="sign in" />
-      </form>
-    </ContainerWhite>
+    <Form onSubmit={handleSubmit}>
+      <Form.EmailInput
+        inputLabel="Your Email"
+        placeholder="e.g johndoe@gmail.com"
+        value={email}
+        setEmail={setEmail}
+        error={emailError}
+      />
+
+      <Form.Input
+        inputLabel="Your Password"
+        onChange={(e) => setPassword(e.target.value)}
+        type="password"
+        value={password}
+      />
+
+      <Button
+        type="submit"
+        text={"sign in"}
+        variant="is-primary"
+        isLoading={loading}
+      />
+    </Form>
   )
 };
 
