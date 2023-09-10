@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { getSession } from 'next-auth/react';
 
@@ -5,11 +6,18 @@ import { Jobs } from '@/libs/jobs';
 import { JobsType, SessionDataType, } from '@/types';
 import DashboardLayout from '@/layouts/DashboardLayout'
 import JobsContainer from '@/containers/JobsContainer'
+import useJobsStore from '@/zustand/jobs/useJobsStore';
 
 export default function Home({ jobsData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { setJobsList } = useJobsStore(state => state)
+
+  useEffect(() => {
+    setJobsList(jobsData)
+  }, [jobsData, setJobsList])
+
   return (
     <DashboardLayout>
-      <JobsContainer jobsData={jobsData} />
+      <JobsContainer />
     </DashboardLayout>
   );
 }

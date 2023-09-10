@@ -1,3 +1,5 @@
+import { SortByQuery } from '@/zustand/useSortByFilterStore';
+
 export type JobStatusType =
   | 'applied'
   | 'completed'
@@ -44,6 +46,7 @@ export type TokenExpiredErrorType = {
 
 export type JobFilterByType = {
   filterBy?: JobStatusType;
+  sortby?: SortByQuery;
 };
 
 export declare namespace Buttons {

@@ -8,7 +8,7 @@
 
     grid-column: 1 / -1;
     grid-template-rows: min-content 1fr;
-    // min-height: 69.6rem;
+    min-height: 100svh;
     width: 100%;
   }
 
@@ -26,6 +26,7 @@
       grid-template-rows: none;
       justify-self: center;
       max-width: 111rem;
+      min-height: fit-content;
     }
   }
 }

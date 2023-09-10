@@ -4,7 +4,7 @@ import { jobsFilters } from "@/utils";
 import { JobStatusType } from "@/types";
 import BadgeWithLink from "../UI/BadgeWithLink";
 import DashboardItem from "../DashboardItem";
-import useJobStatusStore from "@/zustand/useJobStatusStore";
+import useJobStatusStore from "@/zustand/jobs/useJobStatusStore";
 
 import styles from "./DashboardJobsFilter.module.scss";
 

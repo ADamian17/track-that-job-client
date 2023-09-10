@@ -4,22 +4,25 @@ import DashboardItem from '../DashboardItem';
 import DashboardJobsFilter from '../DashboardJobsFilter';
 
 import { useRouter } from 'next/router';
-import useJobStatusStore from '@/zustand/useJobStatusStore';
+import useJobStatusStore from '@/zustand/jobs/useJobStatusStore';
 import { JobStatusType } from '@/types';
 
 import styles from "./DashboardAside.module.scss";
 import Link from 'next/link';
+import useJobsStore from '@/zustand/jobs/useJobsStore';
 
 type DashboardSidebarProps = {
   className?: string
 }
 
 const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
+  const { resetJobsList } = useJobsStore(state => state)
   const { setCurrentJobStatus } = useJobStatusStore(state => state)
   const hasQuery = query && query.hasOwnProperty("filterBy")
 
   const handleLogout = () => {
+    resetJobsList();
     signOut();
   };
 

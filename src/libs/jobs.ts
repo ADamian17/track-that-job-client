@@ -6,6 +6,7 @@ import {
   TokenExpiredErrorType,
 } from '@/types';
 import { apiUrl } from '@/utils';
+import { setJobUrlQuery } from '@/utils/setJobUrlQuery';
 
 export type GetAllResponse = JobDataResponseType | TokenExpiredErrorType;
 export class Jobs {
@@ -13,9 +14,7 @@ export class Jobs {
     token: string,
     query: JobFilterByType
   ): Promise<GetAllResponse> {
-    const filterBy =
-      query && query.filterBy ? `?job_status=${query.filterBy}` : `/`;
-    return FetchWrapper.get(apiUrl`/jobs${filterBy}`, {
+    return FetchWrapper.get(apiUrl`/jobs${setJobUrlQuery(query)}`, {
       headers: { authorization: `Bearer ${token}` },
     }).then((res) => res.json());
   }
