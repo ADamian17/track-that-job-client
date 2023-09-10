@@ -6,14 +6,15 @@ import { Jobs } from '@/libs/jobs';
 import { JobsType, SessionDataType, } from '@/types';
 import DashboardLayout from '@/layouts/DashboardLayout'
 import JobsContainer from '@/containers/JobsContainer'
-import useJobsStore from '@/zustand/jobs/useJobsStore';
+import useJobsStore, { UseJobsStoreState } from '@/zustand/jobs/useJobsStore';
 
-export default function Home({ jobsData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ jobsList, jobCount }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { setJobsList } = useJobsStore(state => state)
 
   useEffect(() => {
-    setJobsList(jobsData)
-  }, [jobsData, setJobsList])
+    setJobsList({ jobsList, jobCount })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobsList, setJobsList])
 
   return (
     <DashboardLayout>
@@ -22,14 +23,13 @@ export default function Home({ jobsData }: InferGetServerSidePropsType<typeof ge
   );
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  jobsData: JobsType | null
-}> = async (context) => {
+export const getServerSideProps: GetServerSideProps<UseJobsStoreState> = async (context) => {
   const session = await getSession({ req: context.req }) as SessionDataType;
   const jwtToken = session?.user?.signedJwt;
   const data = await Jobs.getAll(jwtToken!, context.query);
   const isValid = session && data.status !== 401
-  let jobsData: JobsType | null = [];
+  let jobsList: UseJobsStoreState["jobsList"] = [];
+  let jobCount: UseJobsStoreState["jobCount"] = 0;
 
   if (!isValid) {
     return {
@@ -40,13 +40,15 @@ export const getServerSideProps: GetServerSideProps<{
     }
   }
 
-  if ("jobs" in data) {
-    jobsData = data?.jobs
+  if ("jobs" in data && "count" in data) {
+    jobsList = data?.jobs
+    jobCount = data?.count
   }
 
   return {
     props: {
-      jobsData
+      jobsList,
+      jobCount
     },
   };
 };

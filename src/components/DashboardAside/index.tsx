@@ -16,14 +16,14 @@ type DashboardSidebarProps = {
 }
 
 const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { resetJobsList } = useJobsStore(state => state)
   const { setCurrentJobStatus } = useJobStatusStore(state => state)
   const hasQuery = query && query.hasOwnProperty("filterBy")
 
   const handleLogout = () => {
-    resetJobsList();
     signOut();
+    resetJobsList()
   };
 
   useEffect(() => {
