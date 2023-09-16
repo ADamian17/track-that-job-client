@@ -19,12 +19,12 @@ export const jobsFilters = [
     href: '/',
   },
   {
-    text: 'applied',
-    href: '?filterBy=applied',
+    text: 'Completed',
+    href: '?filterBy=completed',
   },
   {
-    text: 'Complete',
-    href: '?filterBy=complete',
+    text: 'applied',
+    href: '?filterBy=applied',
   },
   {
     text: 'Rejected',

@@ -1,11 +1,37 @@
-import { SortByQuery } from '@/zustand/useSortByFilterStore';
-
 export type JobStatusType =
   | 'applied'
   | 'completed'
   | 'in_progress'
   | 'no_response'
   | 'rejected';
+
+export type UserDataType = {
+  user: UserType;
+  progress: ProgressType;
+};
+
+export type UserResponseType = {
+  status: number;
+  data: UserDataType;
+};
+
+export type UserType = {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  profession: string;
+  role: string;
+  profile_image: string;
+  jobs: JobsType;
+  reports?: unknown[];
+  career_coach?: unknown[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type ProgressType = Record<'label' | 'count', string | number>[];
 
 export type JobType = {
   _id: string;
@@ -46,7 +72,6 @@ export type TokenExpiredErrorType = {
 
 export type JobFilterByType = {
   filterBy?: JobStatusType;
-  sortby?: SortByQuery;
 };
 
 export declare namespace Buttons {
