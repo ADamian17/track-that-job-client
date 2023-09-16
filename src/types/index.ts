@@ -5,6 +5,34 @@ export type JobStatusType =
   | 'no_response'
   | 'rejected';
 
+export type UserDataType = {
+  user: UserType;
+  progress: ProgressType;
+};
+
+export type UserResponseType = {
+  status: number;
+  data: UserDataType;
+};
+
+export type UserType = {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  profession: string;
+  role: string;
+  profile_image: string;
+  jobs: JobsType;
+  reports?: unknown[];
+  career_coach?: unknown[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type ProgressType = Record<'label' | 'count', string | number>[];
+
 export type JobType = {
   _id: string;
   job_position: string;
@@ -45,3 +73,24 @@ export type TokenExpiredErrorType = {
 export type JobFilterByType = {
   filterBy?: JobStatusType;
 };
+
+export declare namespace Buttons {
+  type variants =
+    | 'is-primary'
+    | 'is-secondary'
+    | 'is-info'
+    | 'is-danger'
+    | 'is-link';
+
+  type SharedProps = {
+    extraClasses?: string;
+    variant?: variants;
+    children: React.ReactNode;
+  };
+
+  type Props = {
+    text: string;
+  } & SharedProps;
+
+  type LinkProps = SharedProps;
+}

@@ -1,0 +1,11 @@
+@use 'abstracts' as *;
+
+.container {
+  padding: 2.4rem;
+  background-color: $color-white;
+  border-radius: 10px;
+
+  @include media-query('xl') {
+    padding: 2.8rem 3.2rem;
+  }
+}

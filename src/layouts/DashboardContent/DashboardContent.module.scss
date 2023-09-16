@@ -2,6 +2,7 @@
 
 .dashboardContent {
   @include grid-layout;
+  grid-template-rows: min-content;
 
   grid-column: 1 / -1;
 
@@ -22,8 +23,12 @@
   }
 
   @include media-query('md') {
-    .dashboardContentNav {
+    .dashboardContentNav,
+    .dashboardJobContainerWrapper {
       grid-column: center-start / center-end;
+    }
+
+    .dashboardContentNav {
       border-radius: 1rem;
     }
 
@@ -35,7 +40,8 @@
   @include media-query('xl') {
     grid-column: 5 / -1;
 
-    .dashboardContentNav {
+    .dashboardContentNav,
+    .dashboardJobContainerWrapper {
       grid-column: 1 / -1;
     }
   }

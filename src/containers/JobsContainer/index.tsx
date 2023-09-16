@@ -1,20 +1,17 @@
 import React from "react";
 
-import { JobsType } from "@/types";
 import EmptyJobList from "@/components/EmptyJobList";
 import JobCard from "@/components/JobCard";
+import useJobsStore from "@/zustand/jobs/useJobsStore";
 
 import styles from "./JobsContainer.module.scss";
 
+const JobsContainer: React.FC = (props) => {
+  const { jobsList } = useJobsStore(state => state)
 
-type JobsContainerType = {
-  jobsData: JobsType | null
-};
-
-const JobsContainer: React.FC<JobsContainerType> = ({ jobsData }) => {
-  const isEmpty = jobsData && jobsData.length <= 0;
-  const jobList = jobsData && jobsData.map(job => (<JobCard key={job._id} {...job} />))
-  const jobsContent = isEmpty ? <EmptyJobList len={jobsData.length} /> : jobList
+  const isEmpty = jobsList && jobsList?.length <= 0;
+  const jobs = jobsList && jobsList.map(job => (<JobCard key={job._id} {...job} />))
+  const jobsContent = isEmpty ? <EmptyJobList len={jobsList?.length!} /> : jobs
 
   return (
     <section className={styles.jobsContainers}>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AddJobButton from '@/components/AddJobButton';
+import JobsCount from '@/components/JobsCount';
 
 import styles from "./DashboardContent.module.scss"
 
@@ -12,7 +13,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ children }) => {
   return (
     <section className={styles.dashboardContent}>
       <nav className={styles.dashboardContentNav}>
-        <div>filter</div>
+        <JobsCount />
 
         <AddJobButton />
       </nav>

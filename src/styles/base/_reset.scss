@@ -1,5 +1,9 @@
 @use '../abstracts' as *;
 
+:root {
+  --simple-layout-max-width: 73rem;
+}
+
 *,
 *::after,
 *::before {
@@ -14,11 +18,41 @@ html {
 }
 
 body {
-  min-height: 100svh;
   background-color: $default-white-bg;
-  color: $color-black-blue;
   box-sizing: border-box;
+  color: $color-black-blue;
   font-size: 1.6rem;
+  font-weight: 400;
+  min-height: 100svh;
+  line-height: 2.3rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.333px;
+}
+
+h2 {
+  font-size: 20px;
+  letter-spacing: -0.25px;
+}
+
+h3 {
+  font-size: 18px;
+  letter-spacing: -0.25px;
+}
+
+h4 {
+  font-size: 14px;
+  letter-spacing: -0.194px;
 }
 
 ul {

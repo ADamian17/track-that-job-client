@@ -2,6 +2,7 @@ import Input from "./Input"
 import Select from "./Select"
 
 import styles from './Form.module.scss'
+import EmailInput from "./EmailInput"
 
 type FormType = {
   children: React.ReactNode
@@ -20,5 +21,6 @@ const Form = ({ children, ...rest }: FormType) => {
 
 Form.Input = Input
 Form.Select = Select
+Form.EmailInput = EmailInput
 
 export default Form;

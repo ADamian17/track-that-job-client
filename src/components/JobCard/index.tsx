@@ -13,9 +13,9 @@ const JobCard: React.FC<JobType> = ({ _id, job_status, job_position, company_nam
   });
 
   return (
-    <div className={styles.card}>
-      <Link href={`/job/${_id}`}>
-        <h3>Position:  {job_position}</h3>
+    <div className={styles.card} data-testid="job-card">
+      <Link href={`/job/${_id}`} className={styles.cardBody}>
+        <h3 className={styles.headline}>Position:  {job_position}</h3>
         <p>Company: {company_name}</p>
         <p>date: {date}</p>
 

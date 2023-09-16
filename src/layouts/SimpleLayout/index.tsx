@@ -5,25 +5,29 @@ import style from "./SimpleLayout.module.scss";
 
 type SimpleLayoutProps = {
   children: React.ReactNode;
-  editJobUrl?: string
+  editButton?: {
+    buttonText: string
+    buttonUrl: string
+  }
 }
 
-const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editJobUrl }) => {
+const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editButton }) => {
+  const showEditBtn = editButton?.buttonText && editButton.buttonUrl;
+  const editBtn = showEditBtn && (
+    <LinkButton
+      href={editButton.buttonUrl}
+      variant="is-secondary"
+    >
+      {editButton?.buttonText}
+    </LinkButton>
+  )
+
   return (
     <main className={style.simpleLayout}>
       <nav className={style.simpleLayoutNav}>
         <GoBackButton />
 
-        {
-          editJobUrl && (
-            <LinkButton
-              href={editJobUrl}
-              variant="is-secondary"
-            >
-              Edit Job
-            </LinkButton>
-          )
-        }
+        {editBtn}
       </nav>
 
       {children}

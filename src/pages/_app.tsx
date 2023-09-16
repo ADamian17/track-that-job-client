@@ -9,7 +9,7 @@ const jost = Jost({
   display: "swap",
   fallback: ['system-ui', "sans-serif"],
   subsets: ['latin'],
-  weight: ["400", "600", "700"],
+  weight: ["400", "100", "700", "900"],
   style: "normal",
   variable: "--primary-font"
 })

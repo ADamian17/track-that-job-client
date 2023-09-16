@@ -26,7 +26,7 @@ export class FetchWrapper {
     });
   }
 
-  static destroy(path: string, options?: OptionsProps): Promise<Response> {
+  static delete(path: string, options?: OptionsProps): Promise<Response> {
     return fetch(path, {
       ...options,
       method: 'DELETE',

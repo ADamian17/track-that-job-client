@@ -4,10 +4,12 @@ import DashboardItem from '../DashboardItem';
 import DashboardJobsFilter from '../DashboardJobsFilter';
 
 import { useRouter } from 'next/router';
-import useJobStatusStore from '@/zustand/useJobStatusStore';
+import useJobStatusStore from '@/zustand/jobs/useJobStatusStore';
 import { JobStatusType } from '@/types';
 
 import styles from "./DashboardAside.module.scss";
+import Link from 'next/link';
+import useJobsStore from '@/zustand/jobs/useJobsStore';
 
 type DashboardSidebarProps = {
   className?: string
@@ -15,11 +17,13 @@ type DashboardSidebarProps = {
 
 const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
   const { query } = useRouter();
+  const { resetJobsList } = useJobsStore(state => state)
   const { setCurrentJobStatus } = useJobStatusStore(state => state)
   const hasQuery = query && query.hasOwnProperty("filterBy")
 
   const handleLogout = () => {
     signOut();
+    resetJobsList()
   };
 
   useEffect(() => {
@@ -34,8 +38,22 @@ const DashboardAside: React.FC<DashboardSidebarProps> = ({ className }) => {
       <DashboardJobsFilter />
 
       <DashboardItem>
-        <p>Account</p>
-        <p onClick={handleLogout}>Logout</p>
+        <Link href="/profile" className={styles.asideNavItem}>
+          <span>Profile</span>
+          <svg>
+            <use href='/icons/aside-icons.svg#icon-user'></use>
+          </svg>
+        </Link>
+
+        <p
+          onClick={handleLogout}
+          className={styles.asideNavItem}
+        >
+          <span>Logout</span>
+          <svg>
+            <use href='/icons/aside-icons.svg#icon-logout'></use>
+          </svg>
+        </p>
       </DashboardItem>
     </aside>
   )

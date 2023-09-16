@@ -1,6 +1,12 @@
+@use 'abstracts' as *;
+
 .simpleLayout {
   padding: 2.4rem;
-  min-height: 100vh;
+
+  & > * {
+    max-width: var(--simple-layout-max-width);
+    margin: 0 auto;
+  }
 
   .simpleLayoutNav {
     align-items: center;
@@ -8,5 +14,13 @@
     justify-content: space-between;
     margin-bottom: 2.4rem;
     min-height: 4rem;
+  }
+
+  @include media-query('md') {
+    padding-top: 5.6rem;
+  }
+
+  @include media-query('lg') {
+    padding-top: 8rem;
   }
 }

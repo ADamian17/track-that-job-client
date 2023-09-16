@@ -2,6 +2,7 @@ import React from 'react';
 import Link, { LinkProps } from 'next/link';
 
 import linkBtnStyles from './LinkButton.module.scss';
+import { Buttons } from '@/types';
 
 const LinkButton: React.FC<
   Buttons.LinkProps &
