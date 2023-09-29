@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { UserDataType } from "@/types";
 
 import styles from "./ProfileContainer.module.scss"
+import ProfileImage from '@/components/ProfileImage';
 
 const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
   const { first_name, last_name, email, profession, profile_image } = user
@@ -20,14 +21,7 @@ const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
   return (
     <section className={styles.profileContainer}>
       <div className={styles.profileContent}>
-        <figure className={styles.profileImage}>
-          <Image
-            src={profile_image}
-            width={100}
-            height={100}
-            alt="profile image"
-          />
-        </figure>
+        <ProfileImage imageSrc={profile_image} />
 
         <div>
           <h3 className={styles.headline}>full name: {first_name} {last_name}</h3>
