@@ -1,14 +1,12 @@
-import Image from 'next/image'
-
-import { UserDataType } from "@/types";
-
-import styles from "./ProfileContainer.module.scss"
+import { useProfile } from '@/contexts/Profile.context';
 import ProfileImage from '@/components/ProfileImage';
 
-const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
-  const { first_name, last_name, email, profession, profile_image } = user
+import styles from "./ProfileContainer.module.scss"
 
-  const progressList = progress && progress.map(item => (
+const ProfileContainer: React.FC = () => {
+  const { userData } = useProfile()
+
+  const progressList = userData?.progress && userData?.progress.map(item => (
     <li
       key={item.label}
       className={styles.progressItem}
@@ -21,12 +19,12 @@ const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
   return (
     <section className={styles.profileContainer}>
       <div className={styles.profileContent}>
-        <ProfileImage imageSrc={profile_image} />
+        <ProfileImage imageSrc={userData?.user?.profile_image} />
 
         <div>
-          <h3 className={styles.headline}>full name: {first_name} {last_name}</h3>
-          <p className={styles.subcopy}><span>email:</span> {email}</p>
-          <small className={styles.smallcopy}><span>profession:</span> {profession}</small>
+          <h3 className={styles.headline}>full name: {userData?.user?.first_name} {userData?.user?.last_name}</h3>
+          <p className={styles.subcopy}><span>email:</span> {userData?.user?.email}</p>
+          <small className={styles.smallcopy}><span>profession:</span> {userData?.user?.profession}</small>
         </div>
       </div>
 

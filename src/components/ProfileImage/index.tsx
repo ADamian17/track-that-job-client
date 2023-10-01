@@ -1,21 +1,27 @@
 import React, { ElementRef, useRef, useState } from "react";
+import { getDownloadURL } from "firebase/storage";
+import { useSession } from 'next-auth/react';
 import Image from "next/image";
 
-import styles from "./ProfileImage.module.scss";
+import { SessionDataType } from "@/types";
 import { uploadImageFile } from "@/libs/firebase/handlers";
-import { getDownloadURL } from "firebase/storage";
+import { useProfile } from "@/contexts/Profile.context";
+import { User } from "@/libs/user";
+
+import styles from "./ProfileImage.module.scss";
 
 type ProfileImageType = {
   imageSrc: string
 };
 
 const ProfileImage: React.FC<ProfileImageType> = ({ imageSrc }) => {
+  const { setCurrentUser } = useProfile()
+  const { data: session } = useSession()
   const dialogRef = useRef<ElementRef<"dialog">>(null);
   const inputFileRef = useRef<ElementRef<"input">>(null)
   const [progress, setProgress] = useState<number>(0);
   const [progressState, setProgressState] = useState<'Upload is paused' | 'Upload is running' | (string & {})>('');
   const [uploadError, setUploadError] = useState(false)
-
 
   const handleClick = () => {
     dialogRef.current?.showModal()
@@ -50,17 +56,25 @@ const ProfileImage: React.FC<ProfileImageType> = ({ imageSrc }) => {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              if (downloadURL) {
-                console.log({ downloadURL });
-                setProgress(0)
-                setProgressState("")
-                dialogRef.current?.close()
+              if (downloadURL && (session as SessionDataType)?.user?.signedJwt!) {
+                User.updateImg((session as SessionDataType)?.user?.signedJwt!, downloadURL).then(data => {
+                  if (data?.status === 200) {
+                    setProgress(0)
+                    setProgressState("")
+                    setCurrentUser(prev => ({ ...prev, user: data.updatedUser }))
+                    dialogRef.current?.close()
+                  }
+                })
               }
             });
           }
         );
       }
     }
+  }
+
+  const handleClose = () => {
+    dialogRef.current?.close()
   }
 
   return (
@@ -74,6 +88,7 @@ const ProfileImage: React.FC<ProfileImageType> = ({ imageSrc }) => {
           width={100}
           height={100}
           alt="profile image"
+          priority
         />
       </figure>
 
@@ -87,7 +102,7 @@ const ProfileImage: React.FC<ProfileImageType> = ({ imageSrc }) => {
           <p>{progressState}</p>
           <p style={{ maxWidth: 100, width: `${progress}%`, backgroundColor: "red", height: 10 }}></p>
 
-          <input type="button" value="cancel" onClick={() => { dialogRef.current?.close() }} />
+          <input type="button" value="cancel" onClick={handleClose} />
           <input type="submit" value="submit" />
         </form>
       </dialog>
