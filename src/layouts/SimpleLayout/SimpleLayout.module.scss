@@ -16,11 +16,11 @@
     min-height: 4rem;
   }
 
-  @include media-query('md') {
+  @include media-query('lg') {
     padding-top: 5.6rem;
   }
 
-  @include media-query('lg') {
+  @include media-query('xl') {
     padding-top: 8rem;
   }
 }

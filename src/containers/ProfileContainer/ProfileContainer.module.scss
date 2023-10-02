@@ -73,7 +73,7 @@ $progress-items-colors: (
       &::before {
         border-radius: 100%;
         content: '';
-        display: inline-block;
+        display: block;
         height: 8px;
         width: 8px;
       }
