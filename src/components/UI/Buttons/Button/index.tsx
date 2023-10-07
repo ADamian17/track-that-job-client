@@ -30,13 +30,11 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${btnStyles.btn} ${btnVariant} ${extraClasses}`}
+      className={`${btnStyles.btn} ${btnVariant} ${isLoading && btnStyles.isLoading} ${extraClasses}`}
       {...rest}
     >
-      {isLoading ? (
+      {isLoading && (
         <span className={`${btnStyles.smooth} ${btnStyles.spinner}`} />
-      ) : (
-        ''
       )}
       {text}
     </button>

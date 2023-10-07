@@ -1,5 +1,7 @@
 import { useProfile } from '@/contexts/Profile.context';
+
 import ProfileImage from '@/components/ProfileImage';
+import DeleteProfileSection from '@/components/DeleteProfileSection';
 
 import styles from "./ProfileContainer.module.scss"
 
@@ -35,6 +37,8 @@ const ProfileContainer: React.FC = () => {
           {progressList}
         </ul>
       </div>
+
+      <DeleteProfileSection />
     </section>
   )
 }
