@@ -36,6 +36,7 @@ const Input: React.FC<InputProps> = ({
       <input
         type={type}
         className={inputStyles}
+        name={name}
         {...rest}
       />
     </FieldWrapper>

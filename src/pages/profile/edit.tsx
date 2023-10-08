@@ -1,22 +1,17 @@
-import FormWrapper from "@/components/FormWrapper";
-import Button from "@/components/UI/Buttons/Button";
-import ButtonsGroup from "@/components/UI/Buttons/ButtonsGroup";
-import Form from "@/components/UI/Form";
-import { useProfile } from "@/contexts/Profile.context";
-import SimpleLayout from "@/layouts/SimpleLayout";
-import { User } from "@/libs/user";
-import { SessionDataType, UserDataType } from "@/types";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getSession } from "next-auth/react";
-import { useRouter } from "next/router";
+
+import { SessionDataType, UserDataType } from "@/types";
+import { User } from "@/libs/user";
+import FormWrapper from "@/components/FormWrapper";
+import ProfileForm from "@/components/ProfileForm";
+import SimpleLayout from "@/layouts/SimpleLayout";
 
 type ProfileType = {
   userData: UserDataType
 }
 
 export default function EditProfile({ userData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const router = useRouter();
-
   const styles = {
     ["--simple-layout-max-width" as string]: "54rem"
   }
@@ -27,42 +22,7 @@ export default function EditProfile({ userData }: InferGetServerSidePropsType<ty
         headline="Editing your profile"
         icon="edit"
       >
-        <Form>
-          <Form.Input
-            inputLabel="your first Name"
-            value={userData?.user?.first_name}
-          />
-
-          <Form.Input
-            inputLabel="your last Name"
-            value={userData?.user?.last_name}
-          />
-          <Form.EmailInput
-            inputLabel="your email"
-            placeholder="e.g johndoe@gmail.com"
-            setEmail={() => { }}
-            value={userData?.user?.email}
-          />
-
-          <Form.Input
-            inputLabel="your profession"
-            value={userData?.user?.profession}
-          />
-
-          <ButtonsGroup>
-            <Button
-              onClick={() => router.back()}
-              text="cancel"
-              type="button"
-              variant="is-info"
-            />
-            <Button
-              text="submit"
-              type="submit"
-              variant="is-primary"
-            />
-          </ButtonsGroup>
-        </Form>
+        <ProfileForm userData={userData?.user} isEditPage />
       </FormWrapper>
     </SimpleLayout>
   )

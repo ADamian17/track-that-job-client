@@ -50,13 +50,15 @@ const EmailInput: React.FC<EmailInputProps> = ({
 
   return (
     <Input
-      type='text'
       error={emailError || emailError}
       errorMsg={emailErrorMsg || errorMsg}
       inputLabel={inputLabel}
-      onChange={handleChange}
+      name={name}
       onBlur={validateEmail}
+      onChange={handleChange}
       onFocus={validateEmail}
+      type='text'
+      value={value}
       {...rest}
     />
   );

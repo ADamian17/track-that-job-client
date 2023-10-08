@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import { SessionDataType } from "@/types";
 import Auth from "@/libs/auth";
 import SigninSignupLayout from "@/layouts/SigninSignupLayout";
+import Form from "@/components/UI/Form";
+import Button from "@/components/UI/Buttons/Button";
+import ProfileForm from "@/components/ProfileForm";
 
 export default function SignUp() {
   const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +49,7 @@ export default function SignUp() {
       ctaLink={'/sign-in'}
       location="Sign Up"
     >
-      Sign Up
+      <ProfileForm />
     </SigninSignupLayout>
   )
 }
