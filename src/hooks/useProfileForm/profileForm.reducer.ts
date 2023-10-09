@@ -1,78 +1,42 @@
-import { profileTypes } from './profileForm.types';
+import { profileTypes } from "./profileForm.types";
+import { ProfileReducerAction, setError, setValue } from "./profileFormUtils";
 
 export const initialState = {
   firstName: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
   lastName: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
   email: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
   password: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
   confirmPassword: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
   profession: {
-    value: '',
+    value: "",
     error: false,
+    msg: "",
   },
-};
-
-type ProfileReducerAction = {
-  type: string;
-  payLoad?: { value: string } | { error: boolean };
-};
-
-const setValue = (
-  state = initialState,
-  key: keyof typeof initialState,
-  payLoad?: ProfileReducerAction['payLoad']
-) => {
-  const nextState = {
-    ...state,
-  };
-
-  if (payLoad && 'value' in payLoad) {
-    nextState[key] = {
-      ...nextState[key],
-      value: payLoad?.value,
-    };
-  }
-
-  return nextState;
-};
-
-const setError = (
-  state = initialState,
-  key: keyof typeof initialState,
-  payLoad?: ProfileReducerAction['payLoad']
-) => {
-  const nextState = {
-    ...state,
-  };
-
-  if (payLoad && 'error' in payLoad) {
-    nextState[key] = {
-      ...nextState[key],
-      error: payLoad?.error,
-    };
-  }
-
-  return nextState;
 };
 
 export function profileReducer(
   state = initialState,
-  action: ProfileReducerAction
+  action: ProfileReducerAction,
 ) {
   switch (action.type) {
     case profileTypes.firstName:
@@ -87,6 +51,18 @@ export function profileReducer(
       return setValue(state, profileTypes.confirmPassword, action?.payLoad);
     case profileTypes.profession:
       return setValue(state, profileTypes.profession, action?.payLoad);
+    case profileTypes["set-firstName-error"]:
+      return setError(state, profileTypes.firstName, action?.payLoad);
+    case profileTypes["set-lastName-error"]:
+      return setError(state, profileTypes.lastName, action?.payLoad);
+    case profileTypes["set-email-error"]:
+      return setError(state, profileTypes.email, action?.payLoad);
+    case profileTypes["set-password-error"]:
+      return setError(state, profileTypes.password, action?.payLoad);
+    case profileTypes["set-confirmPassword-error"]:
+      return setError(state, profileTypes.confirmPassword, action?.payLoad);
+    case profileTypes["set-profession-error"]:
+      return setError(state, profileTypes.profession, action?.payLoad);
     default:
       return state;
   }
