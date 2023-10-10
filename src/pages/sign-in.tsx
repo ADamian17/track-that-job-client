@@ -11,7 +11,6 @@ export default function Signin() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-
   const handleAuthenticateUser = useCallback(async () => {
     const session = await getSession() as SessionDataType;
     const prevUrlHome = typeof document !== undefined && document.referrer !== "/"

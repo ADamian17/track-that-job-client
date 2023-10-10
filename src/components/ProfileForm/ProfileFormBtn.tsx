@@ -6,10 +6,11 @@ import ButtonsGroup from "../UI/Buttons/ButtonsGroup";
 
 type ProfileFormType = {
   isEditPage: boolean | undefined
+  loading: boolean
 };
 
 
-const ProfileFormBtn: React.FC<ProfileFormType> = ({ isEditPage = false }) => {
+const ProfileFormBtn: React.FC<ProfileFormType> = ({ isEditPage = false, loading }) => {
   const router = useRouter();
 
   if (!isEditPage) {
@@ -18,6 +19,7 @@ const ProfileFormBtn: React.FC<ProfileFormType> = ({ isEditPage = false }) => {
         text="sign up"
         type="submit"
         variant="is-primary"
+        isLoading={loading}
       />
     )
   }
@@ -34,6 +36,7 @@ const ProfileFormBtn: React.FC<ProfileFormType> = ({ isEditPage = false }) => {
         text="submit"
         type="submit"
         variant="is-primary"
+        isLoading={loading}
       />
     </ButtonsGroup>
   )

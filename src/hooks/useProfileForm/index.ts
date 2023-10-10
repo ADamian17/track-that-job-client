@@ -1,9 +1,15 @@
 import { useReducer, useState } from "react";
+import { useRouter } from "next/router";
+import isEmail from "validator/lib/isEmail";
+import isEmpty from "validator/lib/isEmpty";
+
 import { initialState, profileReducer } from "./profileForm.reducer";
 import { profileTypes } from "./profileForm.types";
-import isEmail from "validator/lib/isEmail";
+import Auth from "@/libs/auth";
 
 export default function useProfileForm() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [state, dispatch] = useReducer(profileReducer, initialState);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,11 +63,70 @@ export default function useProfileForm() {
     }
   };
 
+  const validateFields = () => {
+    let hasErrors = false;
+
+    for (const key in state) {
+      const value = state[key as keyof typeof state].value;
+      if (key === "email" && !isEmail(value)) {
+        const errorKey = `set-${key}-error` as keyof typeof profileTypes;
+
+        dispatch({
+          type: profileTypes[errorKey],
+          payLoad: { error: true, msg: "Please enter a valid email" },
+        });
+
+        hasErrors = true;
+      }
+      if (isEmpty(value)) {
+        const errorKey = `set-${key}-error` as keyof typeof profileTypes;
+
+        dispatch({
+          type: profileTypes[errorKey],
+          payLoad: { error: true, msg: "This field can not be empty" },
+        });
+
+        hasErrors = true;
+      }
+    }
+
+    return hasErrors;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const hasErrors = validateFields();
+
+      if (hasErrors) return;
+      setLoading(true);
+
+      const data = {
+        first_name: state.firstName.value,
+        last_name: state.lastName.value,
+        email: state.email.value,
+        password: state.password.value,
+        profession: state.profession.value,
+      };
+
+      const res = await Auth.signup(data);
+
+      if (res.status === 201) {
+        setLoading(false);
+        router.replace("/sign-in/");
+      }
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return {
     ...state,
-    handleOnChange,
-    handleOnBlur,
-    handleOnFocus,
     handleEmailOnBlur,
+    handleOnBlur,
+    handleOnChange,
+    handleOnFocus,
+    handleSubmit,
+    loading,
   } as const;
 }
