@@ -9,7 +9,7 @@ export default function EditJob() {
   return (
     <SimpleLayout>
       <FormWrapper
-        headline="Editing Add a dark theme option"
+        headline="Editing Job"
         icon="edit"
       >
         <form>

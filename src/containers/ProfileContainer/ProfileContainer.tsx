@@ -1,13 +1,14 @@
-import Image from 'next/image'
+import { useProfile } from '@/contexts/Profile.context';
 
-import { UserDataType } from "@/types";
+import ProfileImage from '@/components/ProfileImage';
+import DeleteProfileSection from '@/components/DeleteProfileSection';
 
 import styles from "./ProfileContainer.module.scss"
 
-const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
-  const { first_name, last_name, email, profession, profile_image } = user
+const ProfileContainer: React.FC = () => {
+  const { userData } = useProfile()
 
-  const progressList = progress && progress.map(item => (
+  const progressList = userData?.progress && userData?.progress.map(item => (
     <li
       key={item.label}
       className={styles.progressItem}
@@ -20,19 +21,12 @@ const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
   return (
     <section className={styles.profileContainer}>
       <div className={styles.profileContent}>
-        <figure className={styles.profileImage}>
-          <Image
-            src={profile_image}
-            width={100}
-            height={100}
-            alt="profile image"
-          />
-        </figure>
+        <ProfileImage imageSrc={userData?.user?.profile_image} />
 
         <div>
-          <h3 className={styles.headline}>full name: {first_name} {last_name}</h3>
-          <p className={styles.subcopy}><span>email:</span> {email}</p>
-          <small className={styles.smallcopy}><span>profession:</span> {profession}</small>
+          <h3 className={styles.headline}>full name: {userData?.user?.first_name} {userData?.user?.last_name}</h3>
+          <p className={styles.subcopy}><span>email:</span> {userData?.user?.email}</p>
+          <small className={styles.smallcopy}><span>profession:</span> {userData?.user?.profession}</small>
         </div>
       </div>
 
@@ -43,6 +37,8 @@ const ProfileContainer: React.FC<UserDataType> = ({ user, progress }) => {
           {progressList}
         </ul>
       </div>
+
+      <DeleteProfileSection />
     </section>
   )
 }

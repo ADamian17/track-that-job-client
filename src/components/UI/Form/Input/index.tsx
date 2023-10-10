@@ -20,10 +20,11 @@ const Input: React.FC<InputProps> = ({
   inputDescription,
   name,
   type = 'text',
+  className,
   ...rest
 }) => {
   const inputStyles = `${styles.input} ${error && styles.inputError
-    }`;
+    } ${className}`;
 
   return (
     <FieldWrapper
@@ -35,6 +36,7 @@ const Input: React.FC<InputProps> = ({
       <input
         type={type}
         className={inputStyles}
+        name={name}
         {...rest}
       />
     </FieldWrapper>

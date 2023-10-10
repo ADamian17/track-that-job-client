@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn } from 'next-auth/react';
 import { useRouter } from "next/router";
 
@@ -15,6 +15,11 @@ const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch('/')
+  }, [router])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,6 +65,7 @@ const SignInContainer: React.FC<LoginFormContainerType> = (props) => {
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         value={password}
+        autoComplete="on"
       />
 
       <Button

@@ -6,6 +6,7 @@ import { User } from "@/libs/user";
 import ProfileContainer from "@/containers/ProfileContainer/ProfileContainer";
 import SimpleLayout from "@/layouts/SimpleLayout";
 import Head from "next/head";
+import { ProfileProvider } from "@/contexts/Profile.context";
 
 type ProfileType = {
   userData: UserDataType
@@ -24,7 +25,9 @@ export default function Profile({ userData }: InferGetServerSidePropsType<typeof
       </Head>
 
       <SimpleLayout editButton={editButton}>
-        <ProfileContainer {...userData} />
+        <ProfileProvider currentUser={userData}>
+          <ProfileContainer />
+        </ProfileProvider>
       </SimpleLayout>
     </>
   )
@@ -43,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<ProfileType> = async (contex
 
     return {
       props: {
-        userData: data.data
+        userData: data.data,
       },
     };
   } catch (error) {

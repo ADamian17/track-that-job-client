@@ -9,9 +9,9 @@ type SimpleLayoutProps = {
     buttonText: string
     buttonUrl: string
   }
-}
+} & React.DetailedHTMLProps<React.AllHTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editButton }) => {
+const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editButton, ...rest }) => {
   const showEditBtn = editButton?.buttonText && editButton.buttonUrl;
   const editBtn = showEditBtn && (
     <LinkButton
@@ -23,7 +23,7 @@ const SimpleLayout: React.FC<SimpleLayoutProps> = ({ children, editButton }) => 
   )
 
   return (
-    <main className={style.simpleLayout}>
+    <main className={style.simpleLayout} {...rest}>
       <nav className={style.simpleLayoutNav}>
         <GoBackButton />
 

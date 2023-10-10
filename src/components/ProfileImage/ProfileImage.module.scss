@@ -1,0 +1,67 @@
+@use 'abstracts' as *;
+
+.profileImage {
+  height: 6.5rem;
+  width: 6.5rem;
+  border-radius: 100%;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    animation: profile-image-backdrop 0.2s linear;
+    background-color: rgba(0, 0, 0, 0.2);
+    content: '✎';
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: $color-white;
+    font-size: 3rem;
+    backdrop-filter: blur(3px);
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.imagePopup {
+  border: none;
+  width: 38rem;
+  height: 28rem;
+  border-radius: 10px;
+
+  &::backdrop {
+    backdrop-filter: blur(1.5px);
+  }
+
+  &[open] {
+    margin: auto;
+  }
+}
+
+@keyframes profile-image-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

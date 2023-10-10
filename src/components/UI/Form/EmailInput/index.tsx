@@ -3,7 +3,7 @@ import React, { forwardRef, useEffect, useState } from 'react';
 import styles from './Input.module.scss';
 import FieldWrapper from '../FieldWrapper';
 import Input from '../Input';
-import validator from 'validator';
+import isEmail from 'validator/lib/isEmail';
 
 export type EmailInputProps = {
   error?: boolean;
@@ -37,7 +37,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
     if (
       e.type === "blur" &&
       e.target.value.length >= 1 &&
-      !validator.isEmail(e.target.value)
+      !isEmail(e.target.value)
     ) {
       setEmailError(true)
       setEmailErrorMsg("Please enter a valid email")
@@ -50,13 +50,15 @@ const EmailInput: React.FC<EmailInputProps> = ({
 
   return (
     <Input
-      type='text'
       error={emailError || emailError}
       errorMsg={emailErrorMsg || errorMsg}
       inputLabel={inputLabel}
-      onChange={handleChange}
+      name={name}
       onBlur={validateEmail}
+      onChange={handleChange}
       onFocus={validateEmail}
+      type='text'
+      value={value}
       {...rest}
     />
   );

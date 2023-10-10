@@ -1,0 +1,10 @@
+@use "abstracts" as *;
+
+.groupField {
+  display: grid;
+  gap: 1rem;
+
+  @include media-query("md") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

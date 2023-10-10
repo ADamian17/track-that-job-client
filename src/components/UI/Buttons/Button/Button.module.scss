@@ -38,7 +38,13 @@
     }
   }
 
+  &.isLoading {
+    color: transparent;
+  }
+
   .spinner {
+    display: initial;
+
     &::before {
       content: '';
       height: 100%;

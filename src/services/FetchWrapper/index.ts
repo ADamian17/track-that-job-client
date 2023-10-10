@@ -13,6 +13,7 @@ export class FetchWrapper {
       ...options,
       method: 'POST',
       headers: {
+        ...options?.headers,
         'Content-Type': 'application/json',
       },
       body: options?.body,
@@ -23,6 +24,10 @@ export class FetchWrapper {
     return fetch(path, {
       ...options,
       method: 'PUT',
+      headers: {
+        ...options?.headers,
+        'Content-Type': 'application/json',
+      },
     });
   }
 
