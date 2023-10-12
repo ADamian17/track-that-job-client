@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import isEmail from "validator/lib/isEmail";
+import Mailcheck from 'mailcheck';
 
 import Form from "@/components/UI/Form";
 import useFormFieldsStore, { UseFormField } from "@/zustand/useFormFieldsStore";
 import { fieldsAreValid } from "@/utils/fieldsAreValid";
 import useFormStepsStore from "@/zustand/useFormStepsStore";
+import isEmpty from "validator/lib/isEmpty";
 
 const Email: React.FC = () => {
   const {
@@ -15,7 +17,6 @@ const Email: React.FC = () => {
     setFieldValue,
     setValidField
   } = useFormFieldsStore(state => state)
-  const { setStepToComplete } = useFormStepsStore(state => state)
   const [suggestedEmail, setSuggestedEmail] = useState<string | null>(null)
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -30,9 +31,6 @@ const Email: React.FC = () => {
       email,
     }, isValidField => {
       if (isValidField) {
-        setStepToComplete("one", true)
-      } else {
-        setStepToComplete("one", false)
       }
     });
   }
@@ -43,7 +41,20 @@ const Email: React.FC = () => {
     }
 
     setFieldValue("email", e.target.value)
-    setValidField("email", true)
+
+    if (isEmail(e.target.value)) {
+      Mailcheck.run({
+        domains: ['gmail.com', 'aol.com'],
+        secondLevelDomains: ['hotmail'],
+        topLevelDomains: ["com", "net", "org"],
+        email: e.target.value,
+        suggested: (suggestion: any) => {
+          setSuggestedEmail(suggestion.full)
+        },
+      });
+
+      setValidField("email", true)
+    }
   }
 
   return (
@@ -59,6 +70,7 @@ const Email: React.FC = () => {
         value={email?.value || ""}
       />
       {
+        !isEmpty(email.value) &&
         suggestedEmail &&
         suggestedEmail !== email.value &&
         (

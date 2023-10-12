@@ -1,9 +1,11 @@
 import Input from "./Input"
 import Select from "./Select"
-
-import styles from './Form.module.scss'
+import Controllers from "./Controllers"
 import EmailInput from "./EmailInput"
 import FieldGroup from "./FieldGroup"
+import Indicators from "./Indicators"
+
+import styles from './Form.module.scss'
 
 type FormType = {
   children: React.ReactNode
@@ -20,9 +22,11 @@ const Form = ({ children, ...rest }: FormType) => {
   )
 }
 
-Form.Input = Input
-Form.Select = Select
+Form.Controllers = Controllers
 Form.EmailInput = EmailInput
 Form.FieldGroup = FieldGroup
+Form.Indicators = Indicators
+Form.Input = Input
+Form.Select = Select
 
 export default Form;

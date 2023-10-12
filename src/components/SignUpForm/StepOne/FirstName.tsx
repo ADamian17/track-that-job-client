@@ -15,9 +15,7 @@ const FirstName: React.FC = () => {
     setFieldValue,
     setValidField
   } = useFormFieldsStore(state => state)
-  const {
-    setStepToComplete,
-  } = useFormStepsStore(state => state)
+  const { setIsDisable } = useFormStepsStore(state => state)
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (isEmpty(e.target.value)) {
@@ -25,17 +23,15 @@ const FirstName: React.FC = () => {
       setValidField("firstName", false)
     }
 
-    fieldsAreValid({
-      firstName,
-      lastName,
-      email,
-    }, isValidField => {
-      if (isValidField) {
-        setStepToComplete("one", true)
-      } else {
-        setStepToComplete("one", false)
-      }
-    });
+    // fieldsAreValid({
+    //   firstName,
+    //   lastName,
+    //   email,
+    // }, isValidField => {
+    //   if (isValidField) {
+    //   }
+    // });
+    setIsDisable(false)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -8,10 +8,6 @@ import { fieldsAreValid } from "@/utils/fieldsAreValid";
 
 const LastName: React.FC = () => {
   const {
-    setStepToComplete,
-  } = useFormStepsStore(state => state)
-
-  const {
     email,
     firstName,
     lastName,
@@ -31,11 +27,7 @@ const LastName: React.FC = () => {
       lastName,
       email,
     }, isValidField => {
-      if (isValidField) {
-        setStepToComplete("one", true)
-      } else {
-        setStepToComplete("one", false)
-      }
+      if (isValidField) { }
     });
   }
 

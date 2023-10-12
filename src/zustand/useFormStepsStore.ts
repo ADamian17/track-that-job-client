@@ -3,54 +3,51 @@ import { create } from "zustand";
 import StepOne from "@/components/SignUpForm/StepOne";
 import StepTwo from "@/components/SignUpForm/StepTwo";
 
-type UseFormStepsStoreState = { currentStep: "one" | "two" } & Record<
-  "one" | "two",
-  { completed: boolean; component: React.FC<{}>; completedFields: 0 }
->;
+type UseFormStepsStoreState = typeof initialState;
 
 type UseFormStepsStoreActions = {
   next: () => void;
   previous: () => void;
-  setStepToComplete: (
-    step: UseFormStepsStoreState["currentStep"],
-    val: boolean,
-  ) => void;
+  setIsDisable: (val: boolean) => void;
 };
 
 const initialState = {
-  currentStep: "one",
-  one: {
-    component: StepOne,
-    completed: false,
-    completedFields: 0,
-  },
-  two: {
-    completed: false,
-    component: StepTwo,
-    completedFields: 0,
-  },
-} satisfies UseFormStepsStoreState;
+  currentStep: 0,
+  isDisable: true,
+  steps: [StepOne, StepTwo],
+};
 
 const useFormStepsStore = create<
   UseFormStepsStoreState & UseFormStepsStoreActions
->((set, get) => ({
+>((set) => ({
   ...initialState,
   next: () => {
-    const isCompleted = get()["one"].completed;
+    set((state) => {
+      if (state.currentStep >= state.steps.length - 1) {
+        return {
+          currentStep: state.currentStep,
+        };
+      }
 
-    if (isCompleted) {
-      set({ currentStep: "two" });
-    }
+      return {
+        currentStep: state.currentStep + 1,
+        isDisable: true,
+      };
+    });
   },
-  previous: () => set({ currentStep: "one" }),
-  setStepToComplete: (step, val) => {
-    set((state) => ({
-      [step]: {
-        ...state[step],
-        completed: val,
-      },
-    }));
+  previous: () => {
+    set((state) => {
+      if (state.currentStep <= 0) {
+        return { currentStep: state.currentStep };
+      }
+
+      return {
+        currentStep: state.currentStep - 1,
+        isDisable: false,
+      };
+    });
   },
+  setIsDisable: (val) => set({ isDisable: val }),
 }));
 
 export default useFormStepsStore;

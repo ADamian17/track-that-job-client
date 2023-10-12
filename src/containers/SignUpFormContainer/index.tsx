@@ -1,24 +1,41 @@
 import React from "react";
 
+import Form from "@/components/UI/Form";
 import useFormStepsStore from "@/zustand/useFormStepsStore";
 
-import styles from "./SignUpFormContainer.module.scss";
-
 const SignUpFormContainer: React.FC = (props) => {
-  const { currentStep, ...Steps } = useFormStepsStore(state => state)
-  const Step = Steps[currentStep].component
+  const { currentStep, steps, next, previous, isDisable } = useFormStepsStore(state => state)
+
+  const Step = steps[currentStep];
+  const firstStep = currentStep === 0;
+  const lastStep = currentStep === steps.length - 1;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      if (!isDisable) return next();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
-    <section className={styles.formWrapper}>
+    <Form onSubmit={handleSubmit}>
       <Step />
 
-      <div className={styles.indicatorsWrapper}>
-        <div className={`${styles.indicators} ${currentStep === "one" && styles.active}`} />
-        <div className={`${styles.indicators} ${currentStep === "two" && styles.active}`} />
-      </div>
-    </section>
+      <Form.Controllers
+        previous={previous}
+        firstStep={firstStep}
+        isDisable={isDisable}
+        lastStep={lastStep}
+      />
+
+      <Form.Indicators
+        steps={steps}
+        currentStep={currentStep}
+      />
+    </Form>
   )
 };
 
 export default SignUpFormContainer;
-
