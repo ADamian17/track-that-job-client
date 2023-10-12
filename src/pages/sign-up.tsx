@@ -7,7 +7,7 @@ import Auth from "@/libs/auth";
 import SigninSignupLayout from "@/layouts/SigninSignupLayout";
 import Form from "@/components/UI/Form";
 import Button from "@/components/UI/Buttons/Button";
-import ProfileForm from "@/components/ProfileForm";
+import SignUpFormContainer from "@/containers/SignUpFormContainer";
 
 export default function SignUp() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +49,7 @@ export default function SignUp() {
       ctaLink={'/sign-in'}
       location="Sign Up"
     >
-      <ProfileForm />
+      <SignUpFormContainer />
     </SigninSignupLayout>
   )
 }

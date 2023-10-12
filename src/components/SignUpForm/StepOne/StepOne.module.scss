@@ -1,0 +1,12 @@
+.fieldsWrapper {
+  display: grid;
+  row-gap: 2.4rem;
+
+  .nextBtn {
+    justify-self: end;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}

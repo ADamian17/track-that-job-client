@@ -1,35 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
+import { UserDataType } from "@/types";
+import Button from "../UI/Buttons/Button";
+import ButtonsGroup from "../UI/Buttons/ButtonsGroup";
 import Form from "../UI/Form";
 import useProfileForm from "@/hooks/useProfileForm";
-import { UserDataType } from "@/types";
-import ProfilePasswordFields from "./ProfilePasswordFields";
-import ProfileFormBtn from "./ProfileFormBtn";
 
 type ProfileFormType = {
-  isEditPage?: boolean
   userData?: UserDataType["user"]
 };
 
 
-const ProfileForm: React.FC<ProfileFormType> = ({ isEditPage = false, userData }) => {
+const EditProfileForm: React.FC<ProfileFormType> = ({ userData }) => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false);
   const {
     firstName,
     lastName,
     profession,
     email,
-    password,
-    confirmPassword,
-    loading,
     handleOnChange,
     handleOnBlur,
     handleOnFocus,
     handleEmailOnBlur,
-    handleSubmit,
   } = useProfileForm();
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       <Form.Input
         error={firstName?.error}
         errorMsg={firstName?.msg}
@@ -52,6 +50,7 @@ const ProfileForm: React.FC<ProfileFormType> = ({ isEditPage = false, userData }
         onBlur={handleOnBlur}
       />
 
+
       <Form.Input
         error={email?.error}
         errorMsg={email?.msg}
@@ -62,15 +61,6 @@ const ProfileForm: React.FC<ProfileFormType> = ({ isEditPage = false, userData }
         onFocus={handleOnFocus}
         placeholder="e.g johndoe@gmail.com"
         value={email?.value || userData?.email || ""}
-      />
-
-      <ProfilePasswordFields
-        isEditPage={isEditPage}
-        confirmPassword={confirmPassword}
-        handleOnBlur={handleOnBlur}
-        handleOnChange={handleOnChange}
-        handleOnFocus={handleOnFocus}
-        password={password}
       />
 
       <Form.Input
@@ -84,9 +74,22 @@ const ProfileForm: React.FC<ProfileFormType> = ({ isEditPage = false, userData }
         value={profession?.value || userData?.profession || ""}
       />
 
-      <ProfileFormBtn isEditPage={isEditPage} loading={loading} />
+      <ButtonsGroup>
+        <Button
+          onClick={() => router.back()}
+          text="cancel"
+          type="button"
+          variant="is-info"
+        />
+        <Button
+          text="submit"
+          type="submit"
+          variant="is-primary"
+          isLoading={loading}
+        />
+      </ButtonsGroup>
     </Form>
   )
 };
 
-export default ProfileForm;
+export default EditProfileForm;

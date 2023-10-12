@@ -23,14 +23,14 @@ const Button: React.FC<ButtonProps> = ({
   text,
   variant,
   isLoading,
-  extraClasses,
+  className,
   ...rest
 }) => {
   const btnVariant = variant ? btnStyles[variant] : '';
 
   return (
     <button
-      className={`${btnStyles.btn} ${btnVariant} ${isLoading && btnStyles.isLoading} ${extraClasses}`}
+      className={`${btnStyles.btn} ${btnVariant} ${isLoading && btnStyles.isLoading} ${className}`}
       {...rest}
     >
       {isLoading && (
