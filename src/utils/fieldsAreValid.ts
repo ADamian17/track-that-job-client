@@ -1,12 +1,12 @@
 export const fieldsAreValid = (
   fields: Record<string, any>,
-  cb: (isValidFields: boolean) => void,
+  fieldsTarget: string[],
 ) => {
   let isValidFields = true;
 
-  for (const field in fields) {
+  fieldsTarget.forEach((field) => {
     isValidFields = isValidFields && fields[field]?.isValid;
-  }
+  });
 
-  return cb(isValidFields);
+  return isValidFields;
 };

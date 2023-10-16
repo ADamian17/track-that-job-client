@@ -14,7 +14,16 @@ type UseFormStepsStoreActions = {
 const initialState = {
   currentStep: 0,
   isDisable: true,
-  steps: [StepOne, StepTwo],
+  steps: [
+    {
+      comp: StepOne,
+      fields: ["firstName", "lastName", "profession"],
+    },
+    {
+      comp: StepTwo,
+      fields: ["email", "password", "confirmPassword"],
+    },
+  ],
 };
 
 const useFormStepsStore = create<

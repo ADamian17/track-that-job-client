@@ -1,3 +1,9 @@
+import {
+  FormDataKeyType,
+  FormDataType,
+  formData,
+} from "@/utils/constants/formData";
+import isEmpty from "validator/lib/isEmpty";
 import { create } from "zustand";
 
 type FieldError = {
@@ -5,85 +11,44 @@ type FieldError = {
   msg: string;
 };
 
-export type UseFormFieldsState = typeof initialState;
-export type UseFormField = keyof UseFormFieldsState;
-
 type UseFormFieldsStoreActions = {
-  setFieldError: (field: UseFormField, fieldError: FieldError) => void;
-  setFieldValue: (field: UseFormField, val: string) => void;
-  setValidField: (field: UseFormField, val: boolean) => void;
+  setFieldError: (field: FormDataKeyType, fieldError: FieldError) => void;
+  setFieldValue: (field: FormDataKeyType, val: string) => void;
+  setValidField: (field: FormDataKeyType, val: boolean) => void;
 };
 
-const initialState = {
-  firstName: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-  lastName: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-  email: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-  password: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-  confirmPassword: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-  profession: {
-    error: false,
-    isValid: false,
-    msg: "",
-    value: "",
-  },
-} as const;
-
-const useFormFieldsStore = create<
-  UseFormFieldsState & UseFormFieldsStoreActions
->((set) => ({
-  ...initialState,
-  setFieldValue: (field, val) => {
-    set((state) => ({
-      ...state,
-      [field]: {
-        ...state[field],
-        value: val,
-      },
-    }));
-  },
-  setValidField: (field, val) => {
-    set((state) => ({
-      ...state,
-      [field]: {
-        ...state[field],
-        isValid: val,
-      },
-    }));
-  },
-  setFieldError: (field, fieldError) => {
-    set((state) => ({
-      ...state,
-      [field]: {
-        ...state[field],
-        ...fieldError,
-      },
-    }));
-  },
-}));
+const useFormFieldsStore = create<FormDataType & UseFormFieldsStoreActions>(
+  (set) => ({
+    ...formData,
+    setFieldValue: (field, val) => {
+      set((state) => ({
+        ...state,
+        [field]: {
+          ...state[field],
+          value: val,
+          isValid: !isEmpty(val),
+        },
+      }));
+    },
+    setValidField: (field, val) => {
+      set((state) => ({
+        ...state,
+        [field]: {
+          ...state[field],
+          isValid: val,
+        },
+      }));
+    },
+    setFieldError: (field, fieldError) => {
+      set((state) => ({
+        ...state,
+        [field]: {
+          ...state[field],
+          ...fieldError,
+        },
+      }));
+    },
+  }),
+);
 
 export default useFormFieldsStore;

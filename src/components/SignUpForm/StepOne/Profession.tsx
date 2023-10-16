@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import isEmail from "validator/lib/isEmail";
-import Mailcheck from 'mailcheck';
+import React from "react";
 
-import Form from "@/components/UI/Form";
-import useFormFieldsStore, { UseFormField } from "@/zustand/useFormFieldsStore";
 import { fieldsAreValid } from "@/utils/fieldsAreValid";
+import Form from "@/components/UI/Form";
 import isEmpty from "validator/lib/isEmpty";
+import useFormFieldsStore, { UseFormField } from "@/zustand/useFormFieldsStore";
+import useFormStepsStore from "@/zustand/useFormStepsStore";
 
 const Profession: React.FC = () => {
   const {
@@ -16,6 +15,7 @@ const Profession: React.FC = () => {
     setFieldValue,
     setValidField
   } = useFormFieldsStore(state => state)
+  const { setIsDisable } = useFormStepsStore(state => state)
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (isEmpty(e.target.value)) {
@@ -23,14 +23,13 @@ const Profession: React.FC = () => {
       setValidField("profession", false)
     }
 
-    fieldsAreValid({
+    const isValid = fieldsAreValid({
       firstName,
       lastName,
       profession,
-    }, isValidField => {
-      if (isValidField) {
-      }
     });
+
+    console.log({ isValid });
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
