@@ -20,6 +20,7 @@ type UseFormFieldsStoreActions = {
   setEmailValue: (value: string) => void;
   setPasswordValue: (value: string) => void;
   setConfirmPasswordValue: (value: string) => void;
+  resetFormFields: () => void;
 };
 
 const useFormFieldsStore = create<FormDataType & UseFormFieldsStoreActions>(
@@ -78,6 +79,7 @@ const useFormFieldsStore = create<FormDataType & UseFormFieldsStoreActions>(
         },
       }));
     },
+    resetFormFields: () => set({ ...formData }),
   }),
 );
 

@@ -8,7 +8,8 @@ type UseFormStepsStoreState = typeof initialState;
 type UseFormStepsStoreActions = {
   next: () => void;
   previous: () => void;
-  setIsDisable: (val: boolean) => void;
+  setIsDisable: (isDisable: boolean) => void;
+  resetSteps: () => void;
 };
 
 const initialState = {
@@ -56,7 +57,8 @@ const useFormStepsStore = create<
       };
     });
   },
-  setIsDisable: (val) => set({ isDisable: val }),
+  setIsDisable: (isDisable) => set({ isDisable }),
+  resetSteps: () => set(initialState),
 }));
 
 export default useFormStepsStore;

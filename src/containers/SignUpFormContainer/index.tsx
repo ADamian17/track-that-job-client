@@ -1,13 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "@/components/UI/Form";
 import useFormStepsStore from "@/zustand/useFormStepsStore";
 import useFormFieldsStore from "@/zustand/useFormFieldsStore";
 import { fieldsAreValid } from "@/utils/fieldsAreValid";
+import { useRouter } from "next/router";
+import Auth from "@/libs/auth";
 
 const SignUpFormContainer: React.FC = (props) => {
-  const { currentStep, steps, next, previous, isDisable, setIsDisable } = useFormStepsStore(state => state)
+  const router = useRouter();
   const state = useFormFieldsStore(state => state)
+  const {
+    currentStep,
+    steps,
+    next,
+    previous,
+    isDisable,
+    setIsDisable,
+    resetSteps
+  } = useFormStepsStore(state => state)
+  const [loading, setLoading] = useState(false);
 
   const Step = steps[currentStep].comp;
   const firstStep = currentStep === 0;
@@ -24,9 +36,29 @@ const SignUpFormContainer: React.FC = (props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      if (!isDisable) return next();
+      if (!isDisable && !lastStep) return next();
+
+      setLoading(true)
+
+      const data = {
+        first_name: state.firstName.value,
+        last_name: state.lastName.value,
+        email: state.email.value,
+        password: state.password.value,
+        profession: state.profession.value,
+      };
+
+      const res = await Auth.signup(data);
+
+      if (res.status === 201) {
+        setLoading(false);
+        state.resetFormFields()
+        resetSteps()
+        router.replace("/sign-in/");
+      }
+
     } catch (error) {
-      console.log(error);
+      setLoading(false);
     }
   }
 
@@ -35,10 +67,11 @@ const SignUpFormContainer: React.FC = (props) => {
       <Step />
 
       <Form.Controllers
-        previous={previous}
         firstStep={firstStep}
         isDisable={isDisable}
         lastStep={lastStep}
+        loading={loading}
+        previous={previous}
       />
 
       <Form.Indicators

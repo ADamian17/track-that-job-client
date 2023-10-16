@@ -1,19 +1,20 @@
-import useFormStepsStore from "@/zustand/useFormStepsStore";
 import Button from "../../Buttons/Button";
 
 import styles from "./Controllers.module.scss";
 
-type IndicatorsType = {
+type ControllersType = {
   lastStep: boolean
   firstStep: boolean
   isDisable: boolean
   previous: () => void
+  loading: boolean;
 }
 
-const Controllers: React.FC<IndicatorsType> = ({
+const Controllers: React.FC<ControllersType> = ({
   firstStep,
   lastStep,
   isDisable,
+  loading,
   previous
 }) => (
   <div className={styles.btnsWrapper}>
@@ -28,6 +29,7 @@ const Controllers: React.FC<IndicatorsType> = ({
     <Button
       className={styles.submitBtn}
       text={lastStep ? "submit" : "next"}
+      isLoading={loading}
       disabled={isDisable}
       variant="is-primary"
       type="submit"
