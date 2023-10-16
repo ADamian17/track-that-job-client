@@ -38,4 +38,4 @@ export const formData = {
     msg: "",
     value: "",
   },
-} as const;
+};

@@ -3,7 +3,9 @@ import {
   FormDataType,
   formData,
 } from "@/utils/constants/formData";
+import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
+import isStrongPassword from "validator/lib/isStrongPassword";
 import { create } from "zustand";
 
 type FieldError = {
@@ -13,35 +15,63 @@ type FieldError = {
 
 type UseFormFieldsStoreActions = {
   setFieldError: (field: FormDataKeyType, fieldError: FieldError) => void;
-  setFieldValue: (field: FormDataKeyType, val: string) => void;
-  setValidField: (field: FormDataKeyType, val: boolean) => void;
+  setFieldValue: (field: FormDataKeyType, value: string) => void;
+  setValidField: (field: FormDataKeyType, isValid: boolean) => void;
+  setEmailValue: (value: string) => void;
+  setPasswordValue: (value: string) => void;
+  setConfirmPasswordValue: (value: string) => void;
 };
 
 const useFormFieldsStore = create<FormDataType & UseFormFieldsStoreActions>(
-  (set) => ({
+  (set, get) => ({
     ...formData,
-    setFieldValue: (field, val) => {
+    setFieldValue: (field, value) => {
       set((state) => ({
-        ...state,
         [field]: {
           ...state[field],
-          value: val,
-          isValid: !isEmpty(val),
+          value,
+          isValid: !isEmpty(value),
         },
       }));
     },
-    setValidField: (field, val) => {
+    setEmailValue: (value) => {
       set((state) => ({
-        ...state,
+        email: {
+          ...state.email,
+          value,
+          isValid: isEmail(value),
+        },
+      }));
+    },
+    setPasswordValue: (value) => {
+      set((state) => ({
+        password: {
+          ...state.password,
+          value,
+          isValid: isStrongPassword(value),
+        },
+      }));
+    },
+    setConfirmPasswordValue: (value) => {
+      const isValid = get().password.value === value;
+      set((state) => ({
+        confirmPassword: {
+          ...state.confirmPassword,
+          value,
+          isValid,
+        },
+      }));
+    },
+    setValidField: (field, isValid) => {
+      set((state) => ({
         [field]: {
           ...state[field],
-          isValid: val,
+          isValid,
         },
       }));
     },
     setFieldError: (field, fieldError) => {
       set((state) => ({
-        ...state,
         [field]: {
           ...state[field],
           ...fieldError,

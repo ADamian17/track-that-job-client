@@ -1,48 +1,48 @@
 import React, { useState } from "react";
 import isEmail from "validator/lib/isEmail";
+import isEmpty from "validator/lib/isEmpty";
 import Mailcheck from 'mailcheck';
 
 import Form from "@/components/UI/Form";
-import useFormFieldsStore, { UseFormField } from "@/zustand/useFormFieldsStore";
-import { fieldsAreValid } from "@/utils/fieldsAreValid";
-import useFormStepsStore from "@/zustand/useFormStepsStore";
-import isEmpty from "validator/lib/isEmpty";
+import useFormFieldsStore from "@/zustand/useFormFieldsStore";
 
 const Email: React.FC = () => {
   const {
-    firstName,
-    lastName,
     email,
     setFieldError,
-    setFieldValue,
+    setEmailValue,
     setValidField
   } = useFormFieldsStore(state => state)
   const [suggestedEmail, setSuggestedEmail] = useState<string | null>(null)
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.target.name as UseFormField === "email" && !isEmail(e.target.value)) {
-      setFieldError("email", { error: true, msg: "Please enter a valid email" })
+    const { value } = e.target;
+
+    if (isEmpty(value)) {
+      setFieldError("email", { error: true, msg: "This field can not be empty" })
       setValidField("email", false)
+      return
     }
 
-    fieldsAreValid({
-      firstName,
-      lastName,
-      email,
-    }, isValidField => {
-      if (isValidField) {
-      }
-    });
+    if (!isEmail(value)) {
+      setFieldError("email", { error: true, msg: "Please Enter a valid Email" })
+      setValidField("email", false)
+      return
+    }
+
+    setFieldError("email", { error: false, msg: "" })
+    setValidField("email", true)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
     if (email.error) {
       setFieldError("email", { error: false, msg: "" });
     }
 
-    setFieldValue("email", e.target.value)
+    setEmailValue(value)
 
-    if (isEmail(e.target.value)) {
+    if (isEmail(value)) {
       Mailcheck.run({
         domains: ['gmail.com', 'aol.com'],
         secondLevelDomains: ['hotmail'],
@@ -52,8 +52,6 @@ const Email: React.FC = () => {
           setSuggestedEmail(suggestion.full)
         },
       });
-
-      setValidField("email", true)
     }
   }
 
@@ -75,7 +73,7 @@ const Email: React.FC = () => {
         suggestedEmail !== email.value &&
         (
           <p onClick={() => {
-            setFieldValue("email", suggestedEmail)
+            setEmailValue(suggestedEmail)
             setSuggestedEmail(null)
           }}>Did you mean: {suggestedEmail}?</p>
         )}

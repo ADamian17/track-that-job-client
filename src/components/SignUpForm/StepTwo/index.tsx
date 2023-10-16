@@ -1,26 +1,14 @@
-import Form from "@/components/UI/Form";
 import Email from "./Email";
+import Form from "@/components/UI/Form";
+import Password from "./Password";
+import ConfirmPassword from "./ConfirmPassword";
 
-const StepTwo: React.FC = (props) => {
-  return (
-    <>
-      <Email />
-
-      <Form.Input
-        inputLabel="your password"
-        name="password"
-        type="password"
-        autoComplete="on"
-      />
-
-      <Form.Input
-        inputLabel="confirm password"
-        name="confirmPassword"
-        type="password"
-        autoComplete="on"
-      />
-    </>
-  )
-};
+const StepTwo: React.FC = (props) => (
+  <>
+    <Email />
+    <Password />
+    <ConfirmPassword />
+  </>
+);
 
 export default StepTwo;
