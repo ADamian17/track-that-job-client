@@ -1,6 +1,6 @@
-import { apiUrl } from '@/utils';
-import { FetchWrapper } from '@/services/FetchWrapper';
-import { UserResponseType } from '@/types';
+import { apiUrl } from "@/utils";
+import { FetchWrapper } from "@/services/FetchWrapper";
+import { UserResponseType } from "@/types";
 
 export class User {
   static get(token: string): Promise<UserResponseType> {
@@ -9,9 +9,10 @@ export class User {
     }).then((res) => res.json());
   }
 
-  static edit(token: string): Promise<Response> {
+  static edit(token: string, data: any): Promise<Response> {
     return FetchWrapper.put(apiUrl`/users/update`, {
       headers: { authorization: `Bearer ${token}` },
+      body: JSON.stringify(data),
     }).then((res) => res.json());
   }
 

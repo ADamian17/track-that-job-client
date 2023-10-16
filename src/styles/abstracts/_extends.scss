@@ -1,6 +1,6 @@
-@use './colors' as *;
-@use './mixins' as *;
-@use './media-queries' as *;
+@use "./colors" as *;
+@use "./mixins" as *;
+@use "./media-queries" as *;
 
 %dashboard-aside-item {
   background-color: $color-white;
@@ -21,7 +21,7 @@
   padding: 1rem 1.6rem;
   position: relative;
   text-transform: capitalize;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
 
   &.is-primary {
     @include setBtnStyle($color-purple);
@@ -86,7 +86,7 @@
   background-color: $color-white;
   border-radius: 10px;
 
-  @include media-query('xl') {
+  @include media-query("xl") {
     padding: 2.8rem 3.2rem;
   }
 }

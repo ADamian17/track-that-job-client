@@ -3,8 +3,8 @@ import { getSession } from "next-auth/react";
 
 import { SessionDataType, UserDataType } from "@/types";
 import { User } from "@/libs/user";
+import EditProfileForm from "@/components/EditProfileForm";
 import FormWrapper from "@/components/FormWrapper";
-import ProfileForm from "@/components/ProfileForm";
 import SimpleLayout from "@/layouts/SimpleLayout";
 
 type ProfileType = {
@@ -22,7 +22,7 @@ export default function EditProfile({ userData }: InferGetServerSidePropsType<ty
         headline="Editing your profile"
         icon="edit"
       >
-        <ProfileForm userData={userData?.user} isEditPage />
+        <EditProfileForm userData={userData?.user} />
       </FormWrapper>
     </SimpleLayout>
   )

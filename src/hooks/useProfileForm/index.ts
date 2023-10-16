@@ -6,6 +6,7 @@ import isEmpty from "validator/lib/isEmpty";
 import { initialState, profileReducer } from "./profileForm.reducer";
 import { profileTypes } from "./profileForm.types";
 import Auth from "@/libs/auth";
+import { validateFields } from "@/utils/validateFields";
 
 export default function useProfileForm() {
   const router = useRouter();
@@ -63,40 +64,10 @@ export default function useProfileForm() {
     }
   };
 
-  const validateFields = () => {
-    let hasErrors = false;
-
-    for (const key in state) {
-      const value = state[key as keyof typeof state].value;
-      if (key === "email" && !isEmail(value)) {
-        const errorKey = `set-${key}-error` as keyof typeof profileTypes;
-
-        dispatch({
-          type: profileTypes[errorKey],
-          payLoad: { error: true, msg: "Please enter a valid email" },
-        });
-
-        hasErrors = true;
-      }
-      if (isEmpty(value)) {
-        const errorKey = `set-${key}-error` as keyof typeof profileTypes;
-
-        dispatch({
-          type: profileTypes[errorKey],
-          payLoad: { error: true, msg: "This field can not be empty" },
-        });
-
-        hasErrors = true;
-      }
-    }
-
-    return hasErrors;
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const hasErrors = validateFields();
+      const hasErrors = validateFields(state, profileTypes, dispatch);
 
       if (hasErrors) return;
       setLoading(true);
@@ -128,5 +99,6 @@ export default function useProfileForm() {
     handleOnFocus,
     handleSubmit,
     loading,
+    dispatch,
   } as const;
 }
