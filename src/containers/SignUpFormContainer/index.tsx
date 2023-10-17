@@ -63,7 +63,10 @@ const SignUpFormContainer: React.FC = (props) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      onSubmit={handleSubmit}
+      data-testid="sign-up-form-container"
+    >
       <Step />
 
       <Form.Controllers

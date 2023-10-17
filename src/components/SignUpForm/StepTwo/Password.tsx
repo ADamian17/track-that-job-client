@@ -44,6 +44,7 @@ const Password: React.FC = () => {
 
   return (
     <Form.Input
+      data-testid="sign-up-form-password"
       autoComplete="on"
       error={password?.error}
       errorMsg={password?.msg}

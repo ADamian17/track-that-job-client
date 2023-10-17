@@ -21,12 +21,14 @@ const Controllers: React.FC<ControllersType> = ({
     <Button
       type="button"
       text="back"
+      data-testid="sign-up-form-back-btn"
       variant="is-info"
       className={`${firstStep && styles.backBtnHide}`}
       onClick={previous}
     />
 
     <Button
+      data-testid="sign-up-form-next-btn"
       className={styles.submitBtn}
       text={lastStep ? "submit" : "next"}
       isLoading={loading}
