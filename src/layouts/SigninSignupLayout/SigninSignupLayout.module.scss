@@ -1,7 +1,7 @@
-@use 'abstracts' as *;
+@use "abstracts" as *;
 
 .container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +37,7 @@
     }
   }
 
-  @include media-query('md') {
+  @include media-query("md") {
     padding: 2.8rem 3.2rem;
     justify-content: center;
     padding: 4rem 0;
