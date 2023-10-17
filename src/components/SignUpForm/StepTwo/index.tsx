@@ -1,7 +1,6 @@
-import Email from "./Email";
-import Form from "@/components/UI/Form";
-import Password from "./Password";
 import ConfirmPassword from "./ConfirmPassword";
+import Email from "./Email";
+import Password from "./Password";
 
 const StepTwo: React.FC = (props) => (
   <>

@@ -40,6 +40,7 @@ const StepOne: React.FC = () => {
   return (
     <>
       <Form.Input
+        data-testid="sign-up-form-first-name"
         error={firstName?.error}
         errorMsg={firstName?.msg}
         inputLabel="your first Name"
@@ -51,6 +52,7 @@ const StepOne: React.FC = () => {
       />
 
       <Form.Input
+        data-testid="sign-up-form-last-name"
         error={lastName?.error}
         errorMsg={lastName?.msg}
         inputLabel="your last Name"
@@ -62,6 +64,7 @@ const StepOne: React.FC = () => {
       />
 
       <Form.Input
+        data-testid="sign-up-form-profession"
         inputLabel="your profession"
         name="profession"
         error={profession?.error}

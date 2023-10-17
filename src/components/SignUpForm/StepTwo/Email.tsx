@@ -58,6 +58,7 @@ const Email: React.FC = () => {
   return (
     <>
       <Form.Input
+        data-testid="sign-up-form-email"
         error={email?.error}
         errorMsg={email?.msg}
         inputLabel="your email"
