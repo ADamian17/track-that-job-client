@@ -24,4 +24,10 @@ export class Jobs {
       headers: { authorization: `Bearer ${token}` },
     }).then((res) => res.json());
   }
+
+  static delete(token: string, id: string) {
+    return FetchWrapper.delete(apiUrl`/jobs/delete/${id}`, {
+      headers: { authorization: `Bearer ${token}` },
+    }).then((res) => res.json());
+  }
 }

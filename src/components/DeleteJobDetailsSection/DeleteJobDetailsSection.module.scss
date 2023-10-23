@@ -1,0 +1,67 @@
+@use 'abstracts' as *;
+
+.dangerZone {
+  .dangerZoneHeadline {
+    padding-bottom: 1.5rem;
+  }
+
+  .dangerBtnWrapper {
+    &.showConfirmation {
+      .confirmationMsg {
+        display: grid;
+        row-gap: 1.6rem;
+      }
+
+      .defaultMsg {
+        display: none;
+      }
+    }
+
+    .defaultMsg {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.6rem;
+
+      p {
+        max-width: 30rem;
+      }
+    }
+
+    .confirmationMsg {
+      display: none;
+
+      .dangerInputWrapper {
+        display: grid;
+        gap: 1.6rem;
+      }
+
+      .dangerInput {
+        @extend %basic-input;
+        border: 1px solid transparent;
+        min-height: 4rem;
+
+        &.error {
+          border: 1px solid $color-red;
+        }
+      }
+    }
+  }
+
+  @include media-query('md') {
+    .dangerBtnWrapper {
+      .defaultMsg {
+        align-items: center;
+        flex-direction: initial;
+        justify-content: space-between;
+      }
+
+      .confirmationMsg {
+        .dangerInputWrapper {
+          grid-template-columns: 1fr min-content;
+          align-items: center;
+          max-width: 62rem;
+        }
+      }
+    }
+  }
+}
