@@ -1,4 +1,4 @@
-@use 'abstracts' as *;
+@use "abstracts" as *;
 
 .card {
   @extend %card;
@@ -23,7 +23,7 @@
     letter-spacing: -0.181px;
   }
 
-  @include media-query('md') {
+  @include media-query("md") {
     font-size: 16px;
 
     .headline {

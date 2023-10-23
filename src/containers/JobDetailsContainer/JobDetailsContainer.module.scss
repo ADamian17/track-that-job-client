@@ -1,0 +1,65 @@
+@use "abstracts" as *;
+
+.jobDetailsContainer {
+  --row-gap: 1.2rem;
+
+  background-color: $color-white;
+  border-radius: 10px;
+  padding: 2.4rem 3.2rem;
+  display: grid;
+  row-gap: var(--row-gap);
+  grid-template-columns: repeat(2, 1fr);
+
+  .mainContent {
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: grid;
+    justify-items: start;
+    row-gap: 4.5px;
+  }
+
+  .date {
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
+
+  .jobPostUrl {
+    align-items: center;
+    color: inherit;
+    column-gap: 5px;
+    display: flex;
+    grid-column: 2 / -1;
+    justify-self: end;
+    line-height: 1.7rem;
+    text-decoration: none;
+
+    .icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: currentColor;
+    }
+  }
+
+  @include media-query("md") {
+    grid-template-columns: max-content 1fr min-content;
+    column-gap: 4rem;
+
+    .date {
+      align-self: start;
+      grid-column: 1 / span 1;
+      grid-row: 1;
+    }
+
+    .mainContent {
+      grid-column: 2 / span 1;
+
+      .copy {
+        display: flex;
+      }
+    }
+
+    .jobPostUrl {
+      grid-column: 3 / span 1;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-@use 'abstracts' as *;
+@use "abstracts" as *;
 
 .dashboardSidebar {
   grid-column: 1 / -1;
@@ -18,7 +18,7 @@
 
       &:before {
         background-color: $color-black;
-        content: '';
+        content: "";
         height: 100%;
         mix-blend-mode: normal;
         opacity: 0.5;
@@ -53,7 +53,7 @@
       animation: sidebar-animation var(--transition-speed) ease-in-out;
     }
 
-    @include media-query('md') {
+    @include media-query("md") {
       column-gap: 1rem;
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -64,25 +64,25 @@
         opacity: 1;
         translate: 0 0;
         z-index: 2;
-        height: fit-content;
+        height: 100%;
         animation: none;
         display: grid;
       }
     }
 
-    @include media-query('xl') {
+    @include media-query("xl") {
       grid-template-columns: none;
       grid-template-rows: repeat(2, min-content);
       row-gap: 2.4rem;
     }
   }
 
-  @include media-query('md') {
+  @include media-query("md") {
     grid-column: center-start / center-end;
     height: initial;
   }
 
-  @include media-query('xl') {
+  @include media-query("xl") {
     grid-column: 1 / span 4;
     height: 52.9rem;
   }

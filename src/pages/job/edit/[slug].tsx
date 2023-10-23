@@ -6,8 +6,12 @@ export default function EditJob() {
   const router = useRouter();
   const id = router.query?.slug
 
+  const styles = {
+    ["--simple-layout-max-width" as string]: "54rem"
+  }
+
   return (
-    <SimpleLayout>
+    <SimpleLayout style={styles}>
       <FormWrapper
         headline="Editing Job"
         icon="edit"

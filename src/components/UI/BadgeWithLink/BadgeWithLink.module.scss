@@ -1,4 +1,4 @@
-@use 'abstracts' as *;
+@use "abstracts" as *;
 
 .badge {
   background-color: $color-white-smoke;
@@ -7,10 +7,11 @@
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 600;
-  padding: 5px 1.6rem;
+  padding: 4px 1rem;
   text-decoration: none;
   transition: background 0.25s ease;
   text-transform: capitalize;
+  align-self: start;
 
   &.active {
     background-color: $color-blue-dark;

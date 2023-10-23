@@ -16,8 +16,8 @@ const JobCard: React.FC<JobType> = ({ _id, job_status, job_position, company_nam
     <div className={styles.card} data-testid="job-card">
       <Link href={`/job/${_id}`} className={styles.cardBody}>
         <h3 className={styles.headline}>Position:  {job_position}</h3>
+        <p>applied on: {date}</p>
         <p>Company: {company_name}</p>
-        <p>date: {date}</p>
 
         <Badge
           badgeText={job_status}

@@ -1,9 +1,9 @@
 export type JobStatusType =
-  | 'applied'
-  | 'completed'
-  | 'in_progress'
-  | 'no_response'
-  | 'rejected';
+  | "applied"
+  | "completed"
+  | "in_progress"
+  | "no_response"
+  | "rejected";
 
 export type UserDataType = {
   user: UserType;
@@ -31,7 +31,7 @@ export type UserType = {
   __v: number;
 };
 
-export type ProgressType = Record<'label' | 'count', string | number>[];
+export type ProgressType = Record<"label" | "count", string | number>[];
 
 export type JobType = {
   _id: string;
@@ -40,8 +40,8 @@ export type JobType = {
   company_name: string;
   point_of_contact: string;
   job_status: JobStatusType;
-  on_site: 'yes' | 'no';
-  phone_screen: 'yes' | 'no';
+  on_site: "yes" | "no";
+  phone_screen: "yes" | "no";
   user: {};
   applied_date: string;
   createdAt: string;
@@ -76,11 +76,11 @@ export type JobFilterByType = {
 
 export declare namespace Buttons {
   type variants =
-    | 'is-primary'
-    | 'is-secondary'
-    | 'is-info'
-    | 'is-danger'
-    | 'is-link';
+    | "is-primary"
+    | "is-secondary"
+    | "is-info"
+    | "is-danger"
+    | "is-link";
 
   type SharedProps = {
     extraClasses?: string;
