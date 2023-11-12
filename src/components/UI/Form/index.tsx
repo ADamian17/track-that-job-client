@@ -6,6 +6,8 @@ import FieldGroup from "./FieldGroup"
 import Indicators from "./Indicators"
 
 import styles from './Form.module.scss'
+import Fieldset from "./Fieldset"
+import RadioInput from "./RadioInput"
 
 type FormType = {
   children: React.ReactNode
@@ -25,8 +27,10 @@ const Form = ({ children, ...rest }: FormType) => {
 Form.Controllers = Controllers
 Form.EmailInput = EmailInput
 Form.FieldGroup = FieldGroup
+Form.Fieldset = Fieldset
 Form.Indicators = Indicators
 Form.Input = Input
+Form.RadioInput = RadioInput
 Form.Select = Select
 
 export default Form;

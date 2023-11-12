@@ -34,15 +34,15 @@ const JobDetailsContainer: React.FC<JobDetailContainerType> = ({ jobData }) => {
   return (
     <section className={styles.jobDetailsContainer}>
       <div className={styles.topContent}>
-        <Badge
-          badgeText={job_status}
-        />
-
         <div>
           <h3>Position: {job_position}</h3>
           <p>Applied On: {date}</p>
           <p>Company: {company_name}</p>
         </div>
+
+        <Badge
+          badgeText={job_status}
+        />
       </div>
 
       <div className={styles.bottomContent}>

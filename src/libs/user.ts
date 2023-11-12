@@ -9,7 +9,7 @@ export class User {
     }).then((res) => res.json());
   }
 
-  static edit(token: string, data: any): Promise<Response> {
+  static edit<T>(token: string, data: T): Promise<Response> {
     return FetchWrapper.put(apiUrl`/users/update`, {
       headers: { authorization: `Bearer ${token}` },
       body: JSON.stringify(data),

@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+.wrapper {
+  border: none;
+  display: grid;
+  row-gap: 1rem;
+
+  .labelWrapper {
+    .label {
+      text-transform: capitalize;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.180556px;
+      line-height: 19px;
+    }
+
+    .description {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 19px;
+    }
+  }
+
+  .errorMsg {
+    color: $color-red;
+  }
+}

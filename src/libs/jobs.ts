@@ -25,6 +25,13 @@ export class Jobs {
     }).then((res) => res.json());
   }
 
+  static edit<T>(token: string, id: string, data: T) {
+    return FetchWrapper.put(apiUrl`/jobs/update/${id}`, {
+      headers: { authorization: `Bearer ${token}` },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+  }
+
   static delete(token: string, id: string) {
     return FetchWrapper.delete(apiUrl`/jobs/delete/${id}`, {
       headers: { authorization: `Bearer ${token}` },

@@ -1,0 +1,27 @@
+@use "abstracts" as *;
+
+.field {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+
+  label {
+    text-transform: capitalize;
+    display: inline-block;
+  }
+
+  input {
+    appearance: none;
+    background-color: $default-white-bg;
+    border-radius: 50%;
+    border: 1px solid $color-grey;
+    height: 1.6rem;
+    transition: 0.2s all linear;
+    width: 1.6rem;
+
+    &:checked {
+      box-shadow: inset 0 0 2px 2px $default-white-bg;
+      background-color: $color-purple;
+    }
+  }
+}
