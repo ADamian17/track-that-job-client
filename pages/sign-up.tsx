@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-import { SessionDataType } from "@/types";
+import { SessionDataType } from "../types";
 import Auth from "@/libs/auth";
 import SigninSignupLayout from "@/layouts/SigninSignupLayout";
 import Form from "@/components/UI/Form";

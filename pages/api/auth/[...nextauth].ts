@@ -1,16 +1,16 @@
-import Auth from '@/libs/auth';
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import Auth from "../../../libs/auth";
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
   providers: [
     CredentialsProvider({
-      type: 'credentials',
+      type: "credentials",
       credentials: {},
 
       authorize: async (credentials) => {
         const { email, password } = credentials as Record<
-          'email' | 'password',
+          "email" | "password",
           string
         >;
         const user = await Auth.signin({ email, password });
@@ -26,10 +26,10 @@ export default NextAuth({
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/sign-in',
+    signIn: "/sign-in",
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {

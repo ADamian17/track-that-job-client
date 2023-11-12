@@ -1,5 +1,5 @@
-import { FormDataKeyType } from "@/utils/constants/formData";
-import { FormDataType } from "@/utils/constants/formData";
+import { FormDataKeyType } from "../../utils/constants/formData";
+import { FormDataType } from "../../utils/constants/formData";
 
 export type SignUpFormReducerAction = {
   type: string;

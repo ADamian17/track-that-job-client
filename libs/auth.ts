@@ -1,6 +1,6 @@
-import { FetchWrapper } from "@/services/FetchWrapper";
-import { TokenExpiredErrorType } from "@/types";
-import { apiUrl } from "@/utils";
+import { FetchWrapper } from "../services/FetchWrapper";
+import { TokenExpiredErrorType } from "../types";
+import { apiUrl } from "../utils";
 
 type UserDataType = {
   first_name: string;

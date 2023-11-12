@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import DashboardHeader from '@/components/DashboardHeader';
-import useMobileSidebarStore from '@/zustand/useMobileSidebarStore';
+import useMobileSidebarStore from '../../zustand/useMobileSidebarStore';
 import useWindowSize from '@/hooks/useWindowSize';
 
 import styles from "./DashboardSidebar.module.scss"
