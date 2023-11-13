@@ -6,13 +6,13 @@ exports[`Badge Component should match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <span
-        class="badge"
+        class="badge undefined"
       />
     </div>
   </body>,
   "container": <div>
     <span
-      class="badge"
+      class="badge undefined"
     />
   </div>,
   "debug": [Function],
