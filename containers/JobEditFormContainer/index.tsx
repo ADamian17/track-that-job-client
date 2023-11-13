@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-
-import Form from "@/components/UI/Form";
+import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
-import ButtonsGroup from "@/components/UI/Buttons/ButtonsGroup";
+
+import { jobsStatus, pointOfContacts } from "@/utils/constants";
 import Button from "@/components/UI/Buttons/Button";
+import ButtonsGroup from "@/components/UI/Buttons/ButtonsGroup";
+import Form from "@/components/UI/Form";
 
 type NewJobFormContainerType = {};
 
 const JobEditFormContainer: React.FC<NewJobFormContainerType> = (props) => {
   const router = useRouter()
+  const id = useId()
   const [loading, setLoading] = useState(false);
 
   return (
@@ -28,15 +30,43 @@ const JobEditFormContainer: React.FC<NewJobFormContainerType> = (props) => {
         inputDescription="Add link where the job is posted"
       />
 
-      <Form.Select
+      <Form.Fieldset
         inputLabel="Job status"
         inputDescription="What is the current status of your application"
-      />
+      >
+        <div>
+          {
+            jobsStatus.map(item => (
+              <Form.RadioInput
+                key={id}
+                id={item.label}
+                label={item.label}
+                name="point of contact"
+                value={item.value}
+              />
+            ))
+          }
+        </div>
+      </Form.Fieldset>
 
-      <Form.Select
+      <Form.Fieldset
         inputLabel="Point of contact"
         inputDescription="select website form where u applied"
-      />
+      >
+        <div>
+          {
+            pointOfContacts.map(item => (
+              <Form.RadioInput
+                key={id}
+                id={item.label}
+                label={item.label}
+                name="point of contact"
+                value={item.value}
+              />
+            ))
+          }
+        </div>
+      </Form.Fieldset>
 
       <Form.Fieldset
         inputLabel="On site"
@@ -59,25 +89,33 @@ const JobEditFormContainer: React.FC<NewJobFormContainerType> = (props) => {
         </div>
       </Form.Fieldset>
 
-      {/* <Form.Fieldset
+      <Form.Fieldset
         inputLabel="Phone Screen"
         inputDescription="Did you have a phone screening interview"
       >
         <div>
-          <input type="radio" id="yes" value="yes" />
-          <label htmlFor="yes">yes</label>
-        </div>
+          <Form.RadioInput
+            id="yes"
+            label="yes"
+            name="phone screen"
+            value="yes"
+          />
 
-        <div>
-          <input type="radio" id="no" value={"no"} />
-          <label htmlFor="no">no</label>
-        </div>
+          <Form.RadioInput
+            id="no"
+            label="no"
+            name="phone screen"
+            value="no"
+          />
 
-        <div>
-          <input type="radio" id="no" value={"no"} />
-          <label htmlFor="no">scheduled</label>
+          <Form.RadioInput
+            id="scheduled"
+            label="scheduled"
+            name="phone screen"
+            value="scheduled"
+          />
         </div>
-      </Form.Fieldset> */}
+      </Form.Fieldset>
 
       <ButtonsGroup>
         <Button

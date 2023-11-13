@@ -5,12 +5,13 @@ import { useSelectCtx } from "../context/Select.provider";
 
 import styles from './SelectListItem.module.scss';
 
-type SelectListItemType = {
+export type SelectListItemType = {
   idx: number;
-  text: string;
+  label: string;
+  value: string
 }
 
-const SelectListItem: React.FC<SelectListItemType> = ({ idx, text }) => {
+const SelectListItem: React.FC<SelectListItemType> = ({ idx, label, value }) => {
   const [liRef, setLiFocus] = useFocus<HTMLLIElement>();
   const { tabIndex, handleSetInputValue } = useSelectCtx();
 
@@ -28,9 +29,9 @@ const SelectListItem: React.FC<SelectListItemType> = ({ idx, text }) => {
       ref={liRef}
       role="presentation"
       tabIndex={idx + 1}
-      data-value={`${text}-${idx}`}
+      data-value={value}
     >
-      <p className={styles.label}>Item {idx}</p>
+      <p className={styles.label}>{label}</p>
     </li>
   );
 }

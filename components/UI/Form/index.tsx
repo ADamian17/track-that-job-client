@@ -1,5 +1,4 @@
 import Input from "./Input"
-import Select from "./Select"
 import Controllers from "./Controllers"
 import EmailInput from "./EmailInput"
 import FieldGroup from "./FieldGroup"
@@ -31,6 +30,5 @@ Form.Fieldset = Fieldset
 Form.Indicators = Indicators
 Form.Input = Input
 Form.RadioInput = RadioInput
-Form.Select = Select
 
 export default Form;

@@ -1,24 +1,26 @@
-import { useRef, useState } from "react";
-import FieldWrapper from "../FieldWrapper";
+import FieldWrapper from "../Form/FieldWrapper";
+
+import SelectInput from "./SelectInput";
+import SelectList from "./SelectList";
+import SelectProvider from "./context/Select.provider";
 
 import styles from "./Select.module.scss";
-import SelectList from "./SelectList";
-import SelectInput from "./SelectInput";
-import SelectProvider from "./context/Select.provider";
 
 type SelectType = {
   error?: boolean;
   errorMsg?: string;
   inputLabel?: string;
   inputDescription?: string;
+  children: React.ReactNode;
 }
 
-const Select: React.FC<SelectType> = ({
+const Select = ({
   error,
   errorMsg,
   inputDescription,
   inputLabel,
-}) => (
+  children,
+}: SelectType) => (
   <FieldWrapper
     error={error!}
     errorMsg={errorMsg!}
@@ -29,11 +31,13 @@ const Select: React.FC<SelectType> = ({
       <div className={styles.selectWrapper}>
         <SelectInput />
 
-        <SelectList />
+        {children}
       </div>
     </SelectProvider>
 
   </FieldWrapper>
 );
+
+Select.SelectList = SelectList
 
 export default Select;

@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 
 import { useSelectCtx } from "../context/Select.provider";
+import SelectListItem, { SelectListItemType } from "../SelectListItem";
 
 import styles from './SelectList.module.scss';
-import SelectListItem from "../SelectListItem";
 
-type SelectListType = {}
+type SelectListType = {
+  items: Pick<SelectListItemType, "label" | "value">[]
+}
 
-const SelectList: React.FC<SelectListType> = ({ }) => {
+const SelectList: React.FC<SelectListType> = ({ items }) => {
   const { handleCloseList, isOpen, menuRef, handleMenuKeyUp } = useSelectCtx();
-
+  const id = useId()
   useEffect(() => {
     document.addEventListener("click", handleCloseList);
 
@@ -24,9 +26,11 @@ const SelectList: React.FC<SelectListType> = ({ }) => {
       className={`${styles.selectList} ${isOpen && styles.isOpen}`}
       onKeyUp={handleMenuKeyUp}
     >
-      <SelectListItem key={1} idx={1} text={"item"} />
-      <SelectListItem key={2} idx={2} text={"item"} />
-      <SelectListItem key={3} idx={3} text={"item"} />
+      {
+        items && items.map((item, idx) => (
+          <SelectListItem key={id} idx={idx} value={item.value} label={item.label} />
+        ))
+      }
     </menu>
   );
 }
