@@ -1,0 +1,87 @@
+@use "abstracts" as *;
+
+.jobDetailsContainer {
+  --row-gap: 1.2rem;
+
+  background-color: $color-white;
+  border-radius: 10px;
+  padding: 2.4rem 3.2rem;
+  display: grid;
+  row-gap: var(--row-gap);
+
+  .topContent {
+    border-bottom: 1px solid #8c92b3;
+    column-gap: 1.8rem;
+    display: flex;
+    padding-bottom: 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bottomContent {
+    max-width: 32rem;
+    text-transform: capitalize;
+
+    .bottomContentHeadline {
+      padding-bottom: 1.5rem;
+    }
+
+    .progressList {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1.6rem;
+    }
+  }
+
+  .mainContent {
+    grid-column: 1 / -1;
+    justify-self: start;
+    display: grid;
+    justify-items: start;
+    row-gap: 4.5px;
+  }
+
+  .date {
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
+
+  .jobPostUrl {
+    align-items: center;
+    color: inherit;
+    column-gap: 5px;
+    display: inline-flex;
+    grid-column: 2 / -1;
+    justify-self: end;
+    line-height: 1.7rem;
+    text-decoration: none;
+
+    .icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: currentColor;
+    }
+  }
+
+  @include media-query("md") {
+    .date {
+      align-self: start;
+      grid-column: 1 / span 1;
+      grid-row: 1;
+      max-width: 6.8rem;
+    }
+
+    .mainContent {
+      grid-column: 2 / span 1;
+
+      .copy {
+        display: flex;
+      }
+    }
+
+    .jobPostUrl {
+      grid-column: 3 / span 1;
+      align-self: start;
+    }
+  }
+}
