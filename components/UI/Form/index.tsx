@@ -1,3 +1,4 @@
+import { ForwardedRef, forwardRef } from "react"
 import Input from "./Input"
 import Controllers from "./Controllers"
 import EmailInput from "./EmailInput"
@@ -10,14 +11,15 @@ import RadioInput from "./RadioInput"
 
 type FormType = {
   children: React.ReactNode
+  formRef?: React.Ref<HTMLFormElement> | null;
 } & React.DetailedHTMLProps<
   React.FormHTMLAttributes<HTMLFormElement>,
   HTMLFormElement
 >
 
-const Form = ({ children, ...rest }: FormType) => {
+const Form = ({ children, formRef, ...rest }: FormType) => {
   return (
-    <form className={styles.form} {...rest}>
+    <form ref={formRef} className={styles.form} {...rest}>
       {children}
     </form>
   )
@@ -30,5 +32,7 @@ Form.Fieldset = Fieldset
 Form.Indicators = Indicators
 Form.Input = Input
 Form.RadioInput = RadioInput
+
+Form.displayName = "Form"
 
 export default Form;

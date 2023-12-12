@@ -25,6 +25,13 @@ export class Jobs {
     }).then((res) => res.json());
   }
 
+  static addOne<T>(token: string, data: T) {
+    return FetchWrapper.post(apiUrl`/jobs/newjob`, {
+      headers: { authorization: `Bearer ${token}` },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+  }
+
   static edit<T>(token: string, id: string, data: T) {
     return FetchWrapper.put(apiUrl`/jobs/update/${id}`, {
       headers: { authorization: `Bearer ${token}` },
